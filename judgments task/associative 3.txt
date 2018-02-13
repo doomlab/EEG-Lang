@@ -1,0 +1,11 @@
+Psychologists are interested in understanding the structure of associative 
+memory and have several ways of investigating it. One method of investigating 
+associative memory is known as a test of "free association." In free association 
+tests, participants like you are given a series of words and are asked to respond 
+to each word by writing the first word that pops into mind. 
+
+You will be asked to judge two words based on their association. When you do this think about this:
+Assume 100 college students from around the nation gave responses to each CUE word.
+How many of these 100 students do you think would have given the RESPONSE word?
+
+Please press 1 to continue.

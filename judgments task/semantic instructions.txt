@@ -1,0 +1,9 @@
+Semantic Instructions:
+This experiment is partially concerned with how humans perceive similarities 
+between the characteristics which define words. Consider the word (and concept of) 
+TORTOISE. We know that a TORTOISE is a reptile with an exoskeleton and a hard 
+shell. If we compare the word TORTOISE with the word TURTLE, we find that they 
+share a majority of the same features. Therefore their definitions or 
+characteristics overlap greatly.
+
+Please press 1 to continue.

@@ -1,0 +1,10 @@
+Associative Instructions:
+This experiment is partially concerned with the structure of human
+associative memory. Consider the word (and concept of) DOG. We know 
+that dogs breathe, eat, sleep, have four legs, have tails, are generally 
+friendly toward humans, and, for some of these reasons, are related to 
+other animals like cats. All this knowledge is structured in some way 
+and the mental structure is thought to come about through a process of
+associative learning. 
+
+Please press 1 to continue.
