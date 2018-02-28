@@ -1,7 +1,6 @@
 
 setwd("~/GitHub/EEG-Lang/paper")
-graph_data <- read_csv("graph_data.csv")
-library(readr)
+graph_data <- read.csv("graph_data.csv")
 library(reshape2)
 library(ggplot2)
 library(cowplot)
@@ -34,78 +33,89 @@ fcz_lst = subset(lst_dat, Site == 'FCZ')
 fz_lst = subset(lst_dat, Site == 'FZ')
 pz_lst = subset(lst_dat, Site == 'PZ')
 cpz_ldt_g = ggplot(data=cpz_ldt, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'CPz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
   theme
 cz_ldt_g = ggplot(data=cz_ldt, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'Cz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
   theme
 fcz_ldt_g = ggplot(data=fcz_ldt, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'FCz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
   theme
 fz_ldt_g = ggplot(data=fz_ldt, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'Fz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
   theme
 pz_ldt_g = ggplot(data=pz_ldt, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'Pz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
   theme
 temp = ggplot(data=pz_ldt, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) 
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) 
 mylegend <- get_legend(temp)
 ldt_grid = plot_grid(cpz_ldt_g,cz_ldt_g,fcz_ldt_g,
         fz_ldt_g,pz_ldt_g,ncol=2)
 ldt_plot = ldt_grid + draw_grob(mylegend, 2/3,0,1/3,0.4)
 cpz_lst_g = ggplot(data=cpz_lst, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'CPz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
   theme
 cz_lst_g = ggplot(data=cz_lst, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'Cz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
   theme
 fcz_lst_g = ggplot(data=fcz_lst, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'FCz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
   theme
 fz_lst_g = ggplot(data=fz_lst, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'Fz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
   theme
 pz_lst_g = ggplot(data=pz_lst, aes(x=variable, y = value, group = Stimuli)) + 
-  geom_line(aes(color=Stimuli),size=1.3) +
-  scale_colour_grey(start = 0, end = .6) +
+  geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
+  scale_linetype_manual(values=c("solid","22","22","solid")) +
+  scale_color_manual(values=c('black','gray48','black','gray60')) +
   scale_y_continuous(name = 'Amplitude', limits = c(-2,6)) +
   scale_x_discrete(name = 'Pz', limits = c(175,350,525,700)) +
   geom_hline(yintercept = 0) +
