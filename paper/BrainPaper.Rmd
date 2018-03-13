@@ -86,7 +86,12 @@ Associative and semantic relationships between words are experimentally definabl
 
 A meta-analytic review from @Lucas2000 examined semantic priming in the absence of association. Effect sizes for semantic priming alone were lower than associative priming. However, with the addition of an associative relationship to an existing semantic relationship, priming effects nearly doubled, also known as the associative boost [@Moss1995]. This result suggests that semantic relationships, that concurrently have associations, can increase priming effects. Priming effects, therefore, are suggested not to be based on association in isolation. @Hutchison2003 argues against Lucas, suggesting positive evidence for associative priming. Automatic priming was sensitive to associative strength as well as feature overlap. These points of contention provide impetus for more research centering on distinctions between associative and semantic priming.  
   
-With the databases described above, orthogonal word pair stimuli can be created to examine associative and semantic priming individually and indeed, priming can be found for each relation separately [@Buchanan2010]. Few studies have directly compared associative and semantic relationships, especially focusing on the brain. @Deacon2004 claim that hemispheric differences exist in lexico-semantic representation, comparing associative and semantic priming. Deacon et al. concluded that semantic features are localized in the right hemisphere, whereas association is localized more within the left hemisphere of the brain. The current study, with an aim to elaborate on basic theoretical questions such as the relationship between associative and semantic processing,  examined the relationship between N400 activation, priming task, and word relationship type. Participants were given both a single lexical decision and letter search task, along with separate semantic, associative, and unrelated word pairs. We expected that the N400 modulation might vary from the different types of word relation, which would indicate differences in c ognitive processing and word organization.
+With the databases described above, orthogonal word pair stimuli can be created to examine associative and semantic priming individually and indeed, priming can be found for each relation separately [@Buchanan2010]. Few studies have directly compared associative and semantic relationships, especially focusing on the brain. @Deacon2004 claim that hemispheric differences exist in lexico-semantic representation, comparing associative and semantic priming. Deacon et al. concluded that semantic features are localized in the right hemisphere, whereas association is localized more within the left hemisphere of the brain. The current study, with an aim to elaborate on basic theoretical questions such as the relationship between associative and semantic processing,  examined the relationship between N400 activation, priming task, and word relationship type. Participants were given both a single lexical decision and letter search task, along with separate semantic, associative, and unrelated word pairs. We expected that the N400 modulation might vary from the different types of word relation, which would indicate differences in cognitive processing and word organization.
+
+--- First, non-word pairs may show significantly more negative waveforms (more negative area) due to the need to search the lexicon before a decision can be made. Second, semantic word paris will have significantly positive values because priming will decrease the need to search the mental lexicon. This is more consistent with the view that the N400 indexes initial contact with semantic memory [@Kutas2011]. Third, associative word pairs may have significantly different values from unrelated word pairs, but a direction is not predicted. More positive values would indicate automatic activation similar to semantics, while more negative values would indicate a need to search the mental lexicon. 
+
+Since task demands require a focus at the lexical level, nonword pairings should not show significant differences from unrelated word pairs. However, if word processing is automatic in a letter search task [@Mari-Beffa2005], then nonwords pairs may show more negative waveforms as participants search the lexicon for the word pair. Second, ?	Semantic and associative word pairs may have significantly positive values because priming will decrease the need to search the mental lexicon; however some research literature indicates that letter search tasks eliminate semantic priming [@Smith2001]. Positive values would indicate a priming effect, which is evidence for activation spreading automatically within the mental lexicon. More negative or nonsignficant values would indicate processing at the lexical, but not semantic, level.
+---
   
 #Method
 
@@ -170,7 +175,7 @@ abline(v = 0)}
 
 To analyze this data, we used multilevel models (MLM) to control for correlated error due to repeated measures of sites and stimulus type for each participant [@Gelman2006]. These models were calculated using the *nlme* package in *R* [@Pinheiro2017]. First, a model with only the intercept was compared to a model with participants as a random intercept factor. Random intercepts allow each participant to have different average scores for areas under the curve or peak latency (see below). If the random intercept model was better than the intercept only model, then all forthcoming models would include participants as a random intercept factor. Models were compared only to the previous step and were deamed "significant" if the likelihood ratio difference score, $\Delta\chi^2$ was greater than to be expected given the change in degrees of freedom between models. Therefore, the *p*-values for each $\Delta\chi^2$ were calculated based on $\Delta df$, and $\alpha$ was set to .05. The two tasks, lexical desicion and letter search, were analyzed in separate models with the area under the curve as the dependent variable. The independent variables included the dummy coded site location as a control variable, followed by stimulus type coded as a dummy variable. In this analysis, we wished to compare each stimulus type to every other stimulus type, and therefore, we set $\alpha$ for these six comparisons to .05/6 = .008. The stimuli variable was recoded to examine all pairwise comparisons. 
 
-###Lexical Decision Task
+Table \@ref(tab:area-table-model) includes the model statistics for the lexical decision and letter search tasks. Participants were included as a random intercept factor, as this model was significantly better than an intercept only model, *p* < .001. The addition of the predictors of site and type of stimulus were also significant for both models, *p* < .001. Table \@ref(tab:area-table-est) includes the estimates for each pairwise comparison for word stimulus type. The results were the same for both task types. The area under the curve was not different for unrelated and nonwords, thus, replicating previous work that the N400 indicates lexical processing for unexpected words. Unrelated and nonwords area under the curve was significantly larger than both associative and semantic word pairs, indicating decreased N400 activation for related word stimuli. Semantic and associative stimuli did not show differences in their area under the curve. Figure \@ref(fig:graph-LDT) displays the ERP waveforms, separated by site, for the lexical decision task, while \@ref(fig:graph-LST) portrays the letter search task. The two gray lines represent unrelated and nonwords, which have larger areas under the curve than the two black lines, which represent semantic and associative word pairs. 
 
 ```{r area-LDT, include = FALSE}
 ##split on task
@@ -290,6 +295,46 @@ ldt_plot = ldt_grid + draw_grob(mylegend, 2/3,0,1/3,0.4)
 ldt_plot
 ```
 
+```{r area-LST, include = FALSE}
+##split on task
+LST = subset(noout, task == "lst")
+
+####LST models####
+LSTmodel1 = gls(curve ~ 1, 
+                data = LST, method = "ML", 
+                na.action = "na.omit")
+
+LSTmodel2 = lme(curve ~ 1, 
+                data = LST, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+LSTmodel3 = lme(curve ~ site + type, 
+                data = LST, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+LSToverall = anova(LSTmodel1, LSTmodel2, LSTmodel3)
+
+levels(LST$type)
+LST$type2 = factor(LST$type,
+                  levels = c("nonword", "unrelated", "semantic", "assoc"))
+
+LSTmodel3.1 = lme(curve ~ site + type2, 
+                data = LST, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+LST$type3 = factor(LST$type,
+                  levels = c("semantic", "nonword", "unrelated", "assoc"))
+
+LSTmodel3.2 = lme(curve ~ site + type3, 
+                data = LST, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+```
+
 ```{r graph-LST, echo=FALSE,  fig.cap = "SOMETHING SOMETHING HERE", fig.height=8, fig.width=8}
 #lst graphs
 cpz_lst_g = ggplot(data=cpz_lst, aes(x=variable, y = value, group = Stimuli)) + 
@@ -337,48 +382,6 @@ lst_grid = plot_grid(cpz_lst_g,cz_lst_g,fcz_lst_g,
 lst_plot = lst_grid + draw_grob(mylegend, 2/3,0,1/3,0.4)
 
 lst_plot
-```
-
-###Letter Search Task
-
-```{r area-LST, include = FALSE}
-##split on task
-LST = subset(noout, task == "lst")
-
-####LST models####
-LSTmodel1 = gls(curve ~ 1, 
-                data = LST, method = "ML", 
-                na.action = "na.omit")
-
-LSTmodel2 = lme(curve ~ 1, 
-                data = LST, method = "ML", 
-                na.action = "na.omit",
-                random = ~1|partno)
-
-LSTmodel3 = lme(curve ~ site + type, 
-                data = LST, method = "ML", 
-                na.action = "na.omit",
-                random = ~1|partno)
-
-LSToverall = anova(LSTmodel1, LSTmodel2, LSTmodel3)
-
-levels(LST$type)
-LST$type2 = factor(LST$type,
-                  levels = c("nonword", "unrelated", "semantic", "assoc"))
-
-LSTmodel3.1 = lme(curve ~ site + type2, 
-                data = LST, method = "ML", 
-                na.action = "na.omit",
-                random = ~1|partno)
-
-LST$type3 = factor(LST$type,
-                  levels = c("semantic", "nonword", "unrelated", "assoc"))
-
-LSTmodel3.2 = lme(curve ~ site + type3, 
-                data = LST, method = "ML", 
-                na.action = "na.omit",
-                random = ~1|partno)
-
 ```
 
 ```{r area-table-model, results='asis', echo = FALSE}
@@ -502,8 +505,6 @@ LDTmodel3.2 = lme(peak ~ site + type3,
 
 ```
 
-###Letter Search Task
-
 ```{r Peak-LST, include = FALSE}
 ##split on task
 LST = subset(noout, task == "lst")
@@ -596,15 +597,12 @@ apa_table(tableprint,
           col.names = c("Task", "Predictor", "$b$", "$SE$", "$t$", "$p$"))
 
 ```
-
-  *Lexical Decision Task*. After each set was processed as described in the data processing section, a multilevel. These stimuli were then tested with a single sample t-test comparing each processing difference from zero. The following hypotheses were examined. First, non-word pairs may show significantly more negative waveforms (more negative area) due to the need to search the lexicon before a decision can be made. Second, semantic word paris will have significantly positive values because priming will decrease the need to search the mental lexicon. This is more consistent with the view that the N400 indexes initial contact with semantic memory [@Kutas2011]. Third, associative word paris may have significantly different values from unrelated word pairs, but a direction is not predicted. More positive values would indicate automatic activation similar to semantics, while more negative values would indicate a need to search the mental lexicon. Figure 1 depicts the N400 curves for the selected electrode sites, and Table 1 presents t-test values for the following conclusions. Nonwords were not found to be significantly more negative than unrelated word pairs, which may indicate a controlled lexicon search for both types of stimuli. Both associative and semantic N400 attenuation were found across frontal and midline sites, while neither CPz nor associative Pz showed reduction. In Figure 1, associative and semantic N400 waveforms are well above the unrelated word pairs, indicating automatic priming for both types of relatedness, even when stimuli are controlled for opposing relationships. 
-  
-  *Letter Search Task*. The same five sites were analyzed as the lexical decision task. Again, data were subtracted from unrelated word pairs averages and then compared against zero with single sample t-tests. The following hypotheses were expected. First, ?	Since task demands require a focus at the lexical level, nonword pairings should not show significant differences from unrelated word pairs. However, if word processing is automatic in a letter search task [@Mari-Beffa2005], then nonwords pairs may show more negative waveforms as participants search the lexicon for the word pair. Second, ?	Semantic and associative word pairs may have significantly positive values because priming will decrease the need to search the mental lexicon; however some research literature indicates that letter search tasks eliminate semantic priming [@Smith2001]. Positive values would indicate a priming effect, which is evidence for activation spreading automatically within the mental lexicon. More negative or nonsignficant values would indicate processing at the lexical, but not semantic, level. Figure 2 portrays the N400 waveforms for the letter search task, and Table 2 contains the t-test values for the following conclusions. Although the average nonword waveform appears to be much lower than unrelated waveform at many sites, the variance across subjects was very large, and no significant differences were found. This finding could indicate that ?wordness? did not matter since participants were searching at a lexical level for specific letters. Nearly all sites showed significant associative and semantic attenuation for the N400 waveform, semantic Cz being the only exception. In comparison, this result seems to suggest that letter search does not inhibit automatic activation of word meaning and association. The nonsignificant relationship between nonwords and unrelated word pairs could be either statistical power or a controlled search process, regardless of task demands.
   
 ##Task Performance
-  Task data were analyzed for correctness in the lexical decision and letter search tasks individually. Error rates were tested with a 2X4 (task by stimulus) repeated measures ANOVA. Overall, performance in the letter search task (M=.97, SD=.02) was equal to the lexical decision task (M=.97, SD=.02), F(1,13)=1.54, p=.24. The interaction between task type and stimuli was also not significant F(3,39)=1.74, p=.18. The different types of stimuli showed a difference in performance, F(3,39)=9.85, p<.001, between nonwords (M=.94, SD=.03, t(13)=-3.02, p=.01) and unrelated word pairs (M=.97, SD=.01); nonwords and associative word pairs (M=.98, SD=.01, t(14)=-5.55, p<.001); and nonwords and semantic word pairs (M=.98, SD=.02, t(14)=-3.45, p=.01). The other stimuli comparisons were all non-significant, and averages by task can be provided upon request.
+##gotta redo do this shiz
+Task data were analyzed for correctness in the lexical decision and letter search tasks individually. Error rates were tested with a 2X4 (task by stimulus) repeated measures ANOVA. Overall, performance in the letter search task (M=.97, SD=.02) was equal to the lexical decision task (M=.97, SD=.02), F(1,13)=1.54, p=.24. The interaction between task type and stimuli was also not significant F(3,39)=1.74, p=.18. The different types of stimuli showed a difference in performance, F(3,39)=9.85, p<.001, between nonwords (M=.94, SD=.03, t(13)=-3.02, p=.01) and unrelated word pairs (M=.97, SD=.01); nonwords and associative word pairs (M=.98, SD=.01, t(14)=-5.55, p<.001); and nonwords and semantic word pairs (M=.98, SD=.02, t(14)=-3.45, p=.01). The other stimuli comparisons were all non-significant, and averages by task can be provided upon request.
   
-##Reaction Time Performance
+##Response Latency Performance
 
 ```{r RT-DS, include=FALSE}
 ##import data
@@ -755,7 +753,7 @@ tableprint[ , 6] = printnum(as.numeric(tableprint[ , 6]),
 
 apa_table(tableprint, 
           align = c("l", rep("c", 6)), 
-          caption = "Peak latency model estimates",
+          caption = "Response latency model estimates",
           escape = FALSE,
           note = "Degrees of freedom are 2863 for lexical decision tasks and 2880 for letter search tasks.",
           col.names = c("Task", "Predictor", "$b$", "$SE$", "$t$", "$p$"))
