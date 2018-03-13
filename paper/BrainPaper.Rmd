@@ -50,6 +50,7 @@ library("papaja")
 options(scipen=999)
 library(nlme)
 library(reshape)
+library(pracma)
 library(ggplot2)
 library(cowplot)
 theme = theme(panel.grid.major = element_blank(), 
@@ -61,6 +62,47 @@ theme = theme(panel.grid.major = element_blank(),
               text = element_text(size = 15),
               legend.position='none',
               plot.margin = unit(c(0.3,1,0.3,0.3),'cm'))
+```
+
+```{r create-eeg-data, eval = FALSE, include = FALSE}
+##find the files
+list.filenames = list.files(path = "./brain_data")
+##create empty list to store stuff
+list.data = list()
+##open all the files 
+for (i in 1:length(list.filenames)){
+  list.data[[i]]<-read.delim(paste("./brain_data/", list.filenames[i], sep = ""), header = FALSE, skip = 1)
+  }
+names(list.data) = list.filenames
+library(data.table)
+fulldata = rbindlist(list.data, fill = T)
+fulldata = fulldata[ , -1152]
+fulldata$partno = c(rep(substr(list.filenames[1:16], 0, 2), each = 30),
+                    rep(substr(list.filenames[17:length(list.filenames)], 0, 2), each = 20))
+fulldata$stim = c(rep(substr(list.filenames[1:16], 4, 4), each = 30),
+                    rep(substr(list.filenames[17:length(list.filenames)], 4, 4), each = 20))
+
+fulldata$task = c(rep(substr(list.filenames[1:16], 5, 5), each = 30),
+                    rep(substr(list.filenames[17:length(list.filenames)], 5, 5), each = 20))
+
+
+##only take five sites we need
+levels(fulldata$V1)
+sitedata = subset(fulldata, V1 == "CPZ" | V1 == "CZ" | V1 == "FCZ" | V1 == "FZ" | V1 == "PZ")
+sitedata$V1 = droplevels(sitedata$V1)
+table(sitedata$V1, sitedata$partno)
+table(sitedata$stim, sitedata$task)
+#no 64 for participant 2
+
+##only take the stims + task we need, use target word
+#stim 3 is NW, 4 is UR, 5 Assoc, 6 Sem
+#task 0 is LDT 1st, 2 is LDT 2nd, 4 is LST 1st, 6 is LST 2nd
+sitedata$stim = factor(sitedata$stim,
+                       levels = 3:6,
+                       labels = c("nonword", "unrelated", "associative", "semantic"))
+finaldata = subset(sitedata, task == 2 | task == 6)
+
+write.csv(finaldata, "final_eeg.csv", row.names = F)
 ```
 
 Semantic facilitation through priming occurs when a related cue word speeds the processing of a following target word [@Meyer1971]. For example, if a person is reading about a yacht race, the word boat is easier to process because of previous activation in semantic memory. Research suggests that priming transpires by both automatic and controlled processes. The automatic model proposes that related words are linked in the brain due to overlapping features [@Collins1975]. Target words are activated without conscious control due to automatic spreading activation within related cognitive networks. Lexical and feature networks are thought to be stored separately, so that semantic priming is the activation from the feature network feeding back into the lexical level [@Stolz1996a]. The overlap of a second word's semantic relatedness makes word recognition easier because it, in essence, has already been processed. The controlled process model proposes that people actively use cognitive strategies to connect related words together. @Neely1991 describes both expectancy generation and post lexical matching as ways that target word processing may be speeded. In expectancy generation, people consciously attempt to predict the words and ideas that will appear next, especially in sentences. Whereas in post lexical matching, people delay processing of the second target word so that it can be compared to the cue word for evaluation. In both cases, the target word is quickened by its relationship to the cue word.
@@ -124,6 +166,21 @@ Participants were first given instructions on how to perform the lexical decisio
 ###Data Screening and Analysis Plan
 
 The data were cleared of artifact data using EEGLAB, an open source MATLAB tool for processing electrophysiological data. The program automatically scanned for and removed artifacts caused by eye-blinking. Next, the datasets were visually inspected and any remaining corrupted sections were removed manually. Ninety percent of the data was retained across all trials and stimulus types after muscular artifact data were removed. However, a loss rate of 20-30 percent is not uncommon, especially with older EEG systems. The data were combined by task and stimulus type exclusively for the second word in each pair. Five sites were chosen to examine priming for nonwords, associative and semantic word pairs based on a survey of the literature. Fz, FCz, Cz, CPz, and Pz were used from the midline. Oz was excluded due to equipment problems across all participants. Using MATLAB, the N400 area under the curve was calculated for each electrode site, stimulus, and task (averaging over trials) around 300-500 msec after stimuli presentation. A constant score was subtracted from all EEG points to ensure all curves were below zero for area under the curve calculations.  
+
+```{r create-area-peak, include = FALSE}
+finaldata = read.csv("final_eeg.csv")
+
+#put site at the end
+colnames(finaldata)[1] = "site"
+finaldata = finaldata[ , c(2:ncol(finaldata), 1)]
+
+#columns are -150 ms to 999 ms around stimulus presentation
+#want to calculate area under the curve for 300 to 600 (so 450:750 including the first 150)
+#subtract a constant so they are all negative
+largest = max(apply(finaldata[ , 450:750], 1, max))
+largest$area = apply(finaldata[ , 450:750], 1, function(x){trapz(300:600, as.numeric((x-largest)))})
+```
+
 
 ```{r area-DS, include=FALSE}
 ##import data

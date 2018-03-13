@@ -7,3 +7,5 @@ master$area = apply(master[ , 303:603], 1, function(x){
 })
 
 tapply(master$area, list(master$Task, master$Stimuli.Type), mean)
+
+list.files()
