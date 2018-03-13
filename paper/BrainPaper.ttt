@@ -8,12 +8,12 @@
 \toprule
 Model & $df$ & AIC & BIC & $\chi^2$ & $\Delta\chi^2$ & $p$\\
 \midrule
-LDT Intercept & 2 & 5,653.09 & 5,660.86 & -2,824.55 & NA & NA\\
-LDT Random Intercept & 3 & 5,589.29 & 5,600.94 & -2,791.65 & 65.80 & < .001\\
-LDT Full & 10 & 5,509.56 & 5,548.39 & -2,744.78 & 93.73 & < .001\\
-LST Intercept & 2 & 5,570.98 & 5,578.74 & -2,783.49 & NA & NA\\
-LST Random Intercept & 3 & 5,494.37 & 5,506.00 & -2,744.18 & 78.62 & < .001\\
-LST Full & 10 & 5,424.68 & 5,463.46 & -2,702.34 & 83.68 & < .001\\
+LDT Intercept & 2 & 5653.09 & 5660.86 & -2824.55 & NA & NA\\
+LDT Random Intercept & 3 & 5589.29 & 5600.94 & -2791.65 & 65.80 & < .001\\
+LDT Full & 10 & 5509.56 & 5548.39 & -2744.78 & 93.73 & < .001\\
+LST Intercept & 2 & 5570.98 & 5578.74 & -2783.49 & NA & NA\\
+LST Random Intercept & 3 & 5494.37 & 5506.00 & -2744.18 & 78.62 & < .001\\
+LST Full & 10 & 5424.68 & 5463.46 & -2702.34 & 83.68 & < .001\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -44,7 +44,7 @@ LDT & Unrelated - Semantic & 504.04 & 72.24 & 6.98 & < .001\\
 LDT & Unrelated - Associative & 348.64 & 72.24 & 4.83 & < .001\\
 LDT & Nonword - Semantic & 641.65 & 72.03 & 8.91 & < .001\\
 LDT & Nonword - Associative & 486.26 & 72.03 & 6.75 & < .001\\
-LDT & Semantic - Associatve & -155.39 & 72.03 & -2.16 & .032\\
+LDT & Semantic - Associative & -155.39 & 72.03 & -2.16 & .032\\
 LST & CZ & -53.33 & 74.68 & -0.71 & .476\\
 LST & FCZ & -121.96 & 74.68 & -1.63 & .103\\
 LST & FZ & -109.88 & 74.95 & -1.47 & .144\\
@@ -54,12 +54,140 @@ LST & Unrelated - Semantic & 456.86 & 66.55 & 6.86 & < .001\\
 LST & Unrelated - Associative & 489.32 & 66.55 & 7.35 & < .001\\
 LST & Nonword - Semantic & 395.90 & 67.15 & 5.90 & < .001\\
 LST & Nonword - Associative & 428.36 & 67.15 & 6.38 & < .001\\
-LST & Semantic - Associatve & 32.46 & 66.55 & 0.49 & .626\\
+LST & Semantic - Associative & 32.46 & 66.55 & 0.49 & .626\\
 \bottomrule
 \addlinespace
 \end{tabular}
 \begin{tablenotes}[para]
-\textit{Note.} The site control level was consider CPZ. Degrees of freedom are 334 for lexical decisions tasks and 332 for letter search tasks.
+\textit{Note.} The site control level was considered CPZ. Degrees of freedom are 334 for lexical decision tasks and 332 for letter search tasks.
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:Peak-table-model}Peak latency model statistics}
+\begin{tabular}{lcccccc}
+\toprule
+Model & $df$ & AIC & BIC & $\chi^2$ & $\Delta\chi^2$ & $p$\\
+\midrule
+LDT Intercept & 2 & 2021.77 & 2029.53 & -1008.89 & NA & NA\\
+LDT Random Intercept & 3 & 1821.35 & 1832.99 & -907.68 & 202.42 & < .001\\
+LDT Full & 10 & 1803.31 & 1842.11 & -891.65 & 32.04 & < .001\\
+LST Intercept & 2 & 1783.12 & 1790.76 & -889.56 & NA & NA\\
+LST Random Intercept & 3 & 1547.94 & 1559.40 & -770.97 & 237.18 & < .001\\
+LST Full & 10 & 1537.51 & 1575.71 & -758.76 & 24.42 & .001\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\textit{Note.} AIC: Aikaike Information Criterion, BIC: Bayesian Information Criterion
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:Peak-table-est}Peak latency model estimates}
+\begin{tabular}{lccccc}
+\toprule
+Task & Predictor & $b$ & $SE$ & $t$ & $p$\\
+\midrule
+LDT & CZ & -0.24 & 0.45 & -0.53 & .600\\
+LDT & FCZ & -0.50 & 0.45 & -1.10 & .274\\
+LDT & FZ & -0.57 & 0.46 & -1.25 & .212\\
+LDT & PZ & 0.40 & 0.46 & 0.87 & .386\\
+LDT & Unrelated - Nonword & -0.91 & 0.41 & -2.23 & .026\\
+LDT & Unrelated - Semantic & 0.83 & 0.41 & 2.03 & .043\\
+LDT & Unrelated - Associative & 0.94 & 0.41 & 2.32 & .021\\
+LDT & Nonword - Semantic & 1.74 & 0.41 & 4.26 & < .001\\
+LDT & Nonword - Associative & 1.85 & 0.41 & 4.56 & < .001\\
+LDT & Semantic - Associative & 0.12 & 0.41 & 0.28 & .778\\
+LST & CZ & -0.28 & 0.37 & -0.77 & .441\\
+LST & FCZ & -0.43 & 0.37 & -1.17 & .245\\
+LST & FZ & -0.29 & 0.37 & -0.79 & .429\\
+LST & PZ & 0.27 & 0.37 & 0.72 & .475\\
+LST & Unrelated - Nonword & -1.35 & 0.33 & -4.11 & < .001\\
+LST & Unrelated - Semantic & -0.50 & 0.33 & -1.51 & .131\\
+LST & Unrelated - Associative & -1.08 & 0.33 & -3.28 & .001\\
+LST & Nonword - Semantic & 0.85 & 0.33 & 2.60 & .010\\
+LST & Nonword - Associative & 0.27 & 0.33 & 0.80 & .422\\
+LST & Semantic - Associative & -0.59 & 0.33 & -1.78 & .076\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\textit{Note.} The site control level was considered CPZ. Degrees of freedom are 333 for lexical decision tasks and 313 for letter search tasks.
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:RT-table-model}Response latency model statistics}
+\begin{tabular}{lcccccc}
+\toprule
+Model & $df$ & AIC & BIC & $\chi^2$ & $\Delta\chi^2$ & $p$\\
+\midrule
+LDT Intercept & 2 & 46747.79 & 46759.73 & -23371.90 & NA & NA\\
+LDT Random Intercept & 3 & 46100.94 & 46118.84 & -23047.47 & 648.85 & < .001\\
+LDT Full & 6 & 46016.82 & 46052.62 & -23002.41 & 90.12 & < .001\\
+LST Intercept & 2 & 45103.08 & 45115.02 & -22549.54 & NA & NA\\
+LST Random Intercept & 3 & 44701.15 & 44719.07 & -22347.57 & 403.93 & < .001\\
+LST Full & 6 & 44537.21 & 44573.05 & -22262.61 & 169.94 & < .001\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\textit{Note.} AIC: Aikaike Information Criterion, BIC: Bayesian Information Criterion
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:RT-table-est}Peak latency model estimates}
+\begin{tabular}{lccccc}
+\toprule
+Task & Predictor & $b$ & $SE$ & $t$ & $p$\\
+\midrule
+LDT & Unrelated - Nonword & 128.90 & 32.06 & 4.02 & < .001\\
+LDT & Unrelated - Semantic & -210.03 & 38.40 & -5.47 & < .001\\
+LDT & Unrelated - Associative & -124.96 & 38.46 & -3.25 & .001\\
+LDT & Nonword - Semantic & -338.93 & 38.69 & -8.76 & < .001\\
+LDT & Nonword - Associative & -253.87 & 38.73 & -6.55 & < .001\\
+LDT & Semantic - Associative & 85.06 & 44.13 & 1.93 & .054\\
+LST & Unrelated - Nonword & 236.10 & 23.91 & 9.88 & < .001\\
+LST & Unrelated - Semantic & -9.54 & 28.17 & -0.34 & .735\\
+LST & Unrelated - Associative & -103.36 & 28.02 & -3.69 & < .001\\
+LST & Nonword - Semantic & -245.64 & 28.86 & -8.51 & < .001\\
+LST & Nonword - Associative & -339.46 & 28.71 & -11.82 & < .001\\
+LST & Semantic - Associative & -93.82 & 32.36 & -2.90 & .004\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\textit{Note.} Degrees of freedom are 2863 for lexical decision tasks and 2880 for letter search tasks.
 \end{tablenotes}
 \end{threeparttable}
 \end{center}

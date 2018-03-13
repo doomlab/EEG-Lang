@@ -1,0 +1,18 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{BrainPaper_files/figure-latex/graph-LDT-1.pdf}
+\caption{\label{fig:graph-LDT}SOMETHING SOMETHING HERE}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{BrainPaper_files/figure-latex/graph-LST-1.pdf}
+\caption{\label{fig:graph-LST}SOMETHING SOMETHING HERE}
+\end{figure*}
+\efloatseparator
+ 

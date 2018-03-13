@@ -64,6 +64,15 @@
 \endgroup}
 
 
+  \usepackage{graphicx}
+  \makeatletter
+  \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+  \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+  \makeatother
+  % Scale images if necessary, so that they will not overflow the page
+  % margins by default, and it is still possible to overwrite the defaults
+  % using explicit options in \includegraphics[width, height, ...]{}
+  \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -116,10 +125,10 @@ Semantics Too)}
   \shorttitle{N400 Association Attenuation}
 
 
-  \author{Erin M. Buchanan\textsuperscript{1}, John E. Scofield\textsuperscript{2}, Nathan Nunley, \& NULL\textsuperscript{3}}
+  \author{Erin M. Buchanan\textsuperscript{1}, John E. Scofield\textsuperscript{2}, \& Nathan Nunley\textsuperscript{3}}
 
-  % \def\affdep{{"", "", "", ""}}%
-  % \def\affcity{{"", "", "", ""}}%
+  % \def\affdep{{"", "", ""}}%
+  % \def\affcity{{"", "", ""}}%
 
   \affiliation{
     \vspace{0.5cm}
@@ -198,9 +207,9 @@ are linked in the brain due to overlapping features (Collins \& Loftus,
 automatic spreading activation within related cognitive networks.
 Lexical and feature networks are thought to be stored separately, so
 that semantic priming is the activation from the feature network feeding
-back into the lexical level ({\textbf{???}}). The overlap of a second
-word's semantic relatedness makes word recognition easier because it, in
-essence, has already been processed. The controlled process model
+back into the lexical level (Stolz \& Besner, 1996). The overlap of a
+second word's semantic relatedness makes word recognition easier because
+it, in essence, has already been processed. The controlled process model
 proposes that people actively use cognitive strategies to connect
 related words together. Neely (1991) describes both expectancy
 generation and post lexical matching as ways that target word processing
@@ -274,9 +283,9 @@ to enhance priming, while remaining imperceptible. With these
 modifications, Deacon, Dynowska, Ritter, and Grose-Fifer (2004) found
 equal N400 attenuation for the masked and unmasked primes. This result
 would indicate that automatic activation was taking place, as the masked
-prime condition did not allow controlled processes to take place.
-({\textbf{???}}) has found similar results in the N400 using different
-masking levels, which kept judgment ability of prime words below chance.
+prime condition did not allow controlled processes to take place. Kiefer
+(2002) has found similar results in the N400 using different masking
+levels, which kept judgment ability of prime words below chance.
 
 A separate theory suggests that N400 effects are seen pre-word
 recognition. The N400 was found to be sensitive to pseudo- or non-words,
@@ -300,22 +309,21 @@ a different color. By selecting items via specifying the row and column
 within a matrix, participants identified the target word they had
 previously seen. These studies compare to masked priming, and show
 automatic activation of semantic information even when targets were
-missed (Rolke et al., 2001).
-
-Letter search tasks also reduce semantic priming by focusing attention
-on the lexical level instead of a feature meaning level (Friedrich,
-Henik, \& Tzelgov, 1991). In this task, participants are asked to
-determine if cue and target words contain a specific letter presented.
-({\textbf{???}}) stipulate that this eliminated or reduced priming
-indicates non-automatic semantic priming. However, it is also important
-to note that Tse and Neely (2007) did yield evidence that letter search
-primes produced semantic priming for low-frequency targets, albeit not
-for high-frequency targets. In Smith and Besner (2001) letter search and
-lexical decision combined study, they found that the letter search task
-eliminated semantic priming when compared to unrelated word pairs and
-the lexical decision task. Yet, Marí-Beffa, Valdés, Cullen, Catena, and
-Houghton (2005) found ERP evidence for semantic processing of the prime
-word during letter search tasks with the attenuation of the N400.
+missed (Rolke et al., 2001). Letter search tasks also reduce semantic
+priming by focusing attention on the lexical level instead of a feature
+meaning level (Friedrich, Henik, \& Tzelgov, 1991). In this task,
+participants are asked to determine if cue and target words contain a
+specific letter presented. Stolz and Besner (1996) stipulate that this
+eliminated or reduced priming indicates non-automatic semantic priming.
+However, it is also important to note that Tse and Neely (2007) did
+yield evidence that letter search primes produced semantic priming for
+low-frequency targets, albeit not for high-frequency targets. In Smith
+and Besner (2001) letter search and lexical decision combined study,
+they found that the letter search task eliminated semantic priming when
+compared to unrelated word pairs and the lexical decision task. Yet,
+Marí-Beffa, Valdés, Cullen, Catena, and Houghton (2005) found ERP
+evidence for semantic processing of the prime word during letter search
+tasks with the attenuation of the N400.
 
 \subsection{Association}\label{association}
 
@@ -332,26 +340,26 @@ McNorgan, 2005; Vinson \& Vigliocco, 2008).
 
 Associative and semantic relationships between words are experimentally
 definable by the use of normed databases. Maki, McKinley, and Thompson
-(2004) took the online dictionary, WordNet ({\textbf{???}}), and used
-software by ({\textbf{???}}) to create a database of words displaying
-the semantic distance between individual words. This database displays
-the relatedness between two words by measuring how semantically close
-words appear in hierarchy, or the JCN (Jiang \& Conrath, 1997). JCN
-measures the word pairs' informational distance from one another, or
-their semantic similarities. Therefore, a low JCN score demonstrates a
-close semantic relationship. Additionally, we can use a measure of
-semantic feature overlap to examine the semantic relatedness between
-word pairs (Buchanan et al., 2013; McRae et al., 2005; Vinson \&
-Vigliocco, 2008), and this measure is factorally related to JCN as a
-semantic measure (Maki \& Buchanan, 2008). Another useful database,
-created by Nelson et al. (2004), is centered on the associative
-relationships between words. Participants were given cue words and asked
-to write the first word that came to mind. These responses were asked of
-and averaged over many participants. The probability of a cue word
-eliciting the target word is called the forward strength (FSG). For
-example, when participants are shown the word \emph{lost}, the most
-common response is \emph{found}, which has a FSG of .75 or occurs about
-75\% of the time.
+(2004) took the online dictionary, WordNet (Felbaum, 1998), and used
+software by Patwardhan, Banerjee, and Pedersen (2003) to create a
+database of words displaying the semantic distance between individual
+words. This database displays the relatedness between two words by
+measuring how semantically close words appear in hierarchy, or the JCN
+(Jiang \& Conrath, 1997). JCN measures the word pairs' informational
+distance from one another, or their semantic similarities. Therefore, a
+low JCN score demonstrates a close semantic relationship. Additionally,
+we can use a measure of semantic feature overlap to examine the semantic
+relatedness between word pairs (Buchanan et al., 2013; McRae et al.,
+2005; Vinson \& Vigliocco, 2008), and this measure is factorally related
+to JCN as a semantic measure (Maki \& Buchanan, 2008). Another useful
+database, created by Nelson et al. (2004), is centered on the
+associative relationships between words. Participants were given cue
+words and asked to write the first word that came to mind. These
+responses were asked of and averaged over many participants. The
+probability of a cue word eliciting the target word is called the
+forward strength (FSG). For example, when participants are shown the
+word \emph{lost}, the most common response is \emph{found}, which has a
+FSG of .75 or occurs about 75\% of the time.
 
 \subsection{Separating Semantic and Associative
 Priming}\label{separating-semantic-and-associative-priming}
@@ -439,22 +447,22 @@ both tasks together.
 The stimuli were selected from the Nelson et al. (2004) associative word
 norms and Maki et al. (2004) semantic word norms. The associative word
 pairs were chosen using the criteria that they were highly associatively
-related, having an FSG score greater than .5; with little or no semantic
-similarities, determined by having a JCN score of greater than 20. An
-example of an associative pair would be \emph{dairy-cow}. The semantic
-word pairs were chosen using the criteria that they had a high semantic
-relatedness shown in a JCN of 3 or less; and were not associatively
-related, having an FSG of less than .01 (e.g., \emph{inn-lodge}). The
-unrelated words were chosen so that they had no similarities (were
-unpaired in the databases), such as \emph{blender} and \emph{compass.}
-For non-word pairs, the target word had one letter changed so that it no
-longer represented a real word, yet the structure was left intact to
-require that the participant process the word cognitively. Essentially,
-non-words were orthographically similar to its real word counterpart,
-except for the change in a single letter. For example, the word
-\emph{pond} can be changed to \emph{pund} to produce a non-word target.
-All materials and their database values can be found at our Open Science
-Foundation page: \url{https://osf.io/h5sd6/}.
+related, having an FSG score greater than .50; with little or no
+semantic similarities, determined by having a JCN score of greater than
+20. An example of an associative pair would be \emph{dairy-cow}. The
+semantic word pairs were chosen using the criteria that they had a high
+semantic relatedness shown in a JCN of 3 or less; and were not
+associatively related, having an FSG of less than .01 (e.g.,
+\emph{inn-lodge}). The unrelated words were chosen so that they had no
+similarities (were unpaired in the databases), such as \emph{blender}
+and \emph{compass.} For non-word pairs, the target word had one letter
+changed so that it no longer represented a real word, yet the structure
+was left intact to require that the participant process the word
+cognitively. Essentially, non-words were orthographically similar to its
+real word counterpart, except for the change in a single letter. For
+example, the word \emph{pond} can be changed to \emph{pund} to produce a
+non-word target. All materials and their database values can be found at
+our Open Science Foundation page: \url{https://osf.io/h5sd6/}.
 
 \subsection{Procedure}\label{procedure}
 
@@ -527,7 +535,7 @@ for area under the curve calculations.
 
 Van Selst and Jolicoeur (1994) describes outlier elimination procedures
 can be affected by factors such as sample size or data skewness. They,
-as well as ({\textbf{???}}), describe procedures for adaptive outlier
+as well as Miller (1991), describe procedures for adaptive outlier
 criteria based on sample size to correct for this any bias due to sample
 size. We utilized a non-recursive procedure with a moving criterion for
 outlier elimination. For example, traditional outlier identification may
@@ -547,28 +555,41 @@ analysis, test statistics should be robust to this slight skew.
 
 To analyze this data, we used multilevel models (MLM) to control for
 correlated error due to repeated measures of sites and stimulus type for
-each participant ({\textbf{???}}). These models were calculated using
-the \emph{nlme} package in \emph{R} ({\textbf{???}}). First, a model
-with only the intercept was compared to a model with participants as a
-random intercept factor. Random intercepts allow each participant to
-have different average scores for areas under the curve or peak latency
-(see below). If the random intercept model was better than the intercept
-only model, then all forthcoming models would include participants as a
-random intercept factor. Models were compared only to the previous step
-and were deamed \enquote{significant} if the likelihood ratio difference
-score, \(\Delta\chi^2\) was greater than to be expected given the change
-in degrees of freedom between models. Therefore, the \emph{p}-values for
-each \(\Delta\chi^2\) were calculated based on \(\Delta df\), and
-\(\alpha\) was set to .05. The two tasks, lexical desicion and letter
-search, were analyzed in separate models with the area under the curve
-as the dependent variable. The independent variables included the dummy
-coded site location as a control variable, followed by stimulus type
-coded as a dummy variable. In this analysis, we wished to compare each
-stimulus type to every other stimulus type, and therefore, we set
-\(\alpha\) for these six comparisons to .05/6 = .008. The stimuli
-variable was recoded to examine all pairwise comparisons.
+each participant (Gelman, 2006). These models were calculated using the
+\emph{nlme} package in \emph{R} (Pinheiro, Bates, Debroy, Sarkar, \&
+Team, 2017). First, a model with only the intercept was compared to a
+model with participants as a random intercept factor. Random intercepts
+allow each participant to have different average scores for areas under
+the curve or peak latency (see below). If the random intercept model was
+better than the intercept only model, then all forthcoming models would
+include participants as a random intercept factor. Models were compared
+only to the previous step and were deamed \enquote{significant} if the
+likelihood ratio difference score, \(\Delta\chi^2\) was greater than to
+be expected given the change in degrees of freedom between models.
+Therefore, the \emph{p}-values for each \(\Delta\chi^2\) were calculated
+based on \(\Delta df\), and \(\alpha\) was set to .05. The two tasks,
+lexical desicion and letter search, were analyzed in separate models
+with the area under the curve as the dependent variable. The independent
+variables included the dummy coded site location as a control variable,
+followed by stimulus type coded as a dummy variable. In this analysis,
+we wished to compare each stimulus type to every other stimulus type,
+and therefore, we set \(\alpha\) for these six comparisons to .05/6 =
+.008. The stimuli variable was recoded to examine all pairwise
+comparisons.
 
 \subsubsection{Lexical Decision Task}\label{lexical-decision-task}
+
+\begin{figure}
+\centering
+\includegraphics{BrainPaper_files/figure-latex/graph-LDT-1.pdf}
+\caption{\label{fig:graph-LDT}SOMETHING SOMETHING HERE}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{BrainPaper_files/figure-latex/graph-LST-1.pdf}
+\caption{\label{fig:graph-LST}SOMETHING SOMETHING HERE}
+\end{figure}
 
 \subsubsection{Letter Search Task}\label{letter-search-task}
 
@@ -580,12 +601,12 @@ variable was recoded to examine all pairwise comparisons.
 \toprule
 Model & $df$ & AIC & BIC & $\chi^2$ & $\Delta\chi^2$ & $p$\\
 \midrule
-LDT Intercept & 2 & 5,653.09 & 5,660.86 & -2,824.55 & NA & NA\\
-LDT Random Intercept & 3 & 5,589.29 & 5,600.94 & -2,791.65 & 65.80 & < .001\\
-LDT Full & 10 & 5,509.56 & 5,548.39 & -2,744.78 & 93.73 & < .001\\
-LST Intercept & 2 & 5,570.98 & 5,578.74 & -2,783.49 & NA & NA\\
-LST Random Intercept & 3 & 5,494.37 & 5,506.00 & -2,744.18 & 78.62 & < .001\\
-LST Full & 10 & 5,424.68 & 5,463.46 & -2,702.34 & 83.68 & < .001\\
+LDT Intercept & 2 & 5653.09 & 5660.86 & -2824.55 & NA & NA\\
+LDT Random Intercept & 3 & 5589.29 & 5600.94 & -2791.65 & 65.80 & < .001\\
+LDT Full & 10 & 5509.56 & 5548.39 & -2744.78 & 93.73 & < .001\\
+LST Intercept & 2 & 5570.98 & 5578.74 & -2783.49 & NA & NA\\
+LST Random Intercept & 3 & 5494.37 & 5506.00 & -2744.18 & 78.62 & < .001\\
+LST Full & 10 & 5424.68 & 5463.46 & -2702.34 & 83.68 & < .001\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -613,7 +634,7 @@ LDT & Unrelated - Semantic & 504.04 & 72.24 & 6.98 & < .001\\
 LDT & Unrelated - Associative & 348.64 & 72.24 & 4.83 & < .001\\
 LDT & Nonword - Semantic & 641.65 & 72.03 & 8.91 & < .001\\
 LDT & Nonword - Associative & 486.26 & 72.03 & 6.75 & < .001\\
-LDT & Semantic - Associatve & -155.39 & 72.03 & -2.16 & .032\\
+LDT & Semantic - Associative & -155.39 & 72.03 & -2.16 & .032\\
 LST & CZ & -53.33 & 74.68 & -0.71 & .476\\
 LST & FCZ & -121.96 & 74.68 & -1.63 & .103\\
 LST & FZ & -109.88 & 74.95 & -1.47 & .144\\
@@ -623,18 +644,82 @@ LST & Unrelated - Semantic & 456.86 & 66.55 & 6.86 & < .001\\
 LST & Unrelated - Associative & 489.32 & 66.55 & 7.35 & < .001\\
 LST & Nonword - Semantic & 395.90 & 67.15 & 5.90 & < .001\\
 LST & Nonword - Associative & 428.36 & 67.15 & 6.38 & < .001\\
-LST & Semantic - Associatve & 32.46 & 66.55 & 0.49 & .626\\
+LST & Semantic - Associative & 32.46 & 66.55 & 0.49 & .626\\
 \bottomrule
 \addlinespace
 \end{tabular}
 \begin{tablenotes}[para]
-\textit{Note.} The site control level was consider CPZ. Degrees of freedom are 334 for lexical decisions tasks and 332 for letter search tasks.
+\textit{Note.} The site control level was considered CPZ. Degrees of freedom are 334 for lexical decision tasks and 332 for letter search tasks.
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
 \end{table}
 
 \subsection{N400 Peak Analysis}\label{n400-peak-analysis}
+
+\subsubsection{Letter Search Task}\label{letter-search-task-1}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:Peak-table-model}Peak latency model statistics}
+\begin{tabular}{lcccccc}
+\toprule
+Model & $df$ & AIC & BIC & $\chi^2$ & $\Delta\chi^2$ & $p$\\
+\midrule
+LDT Intercept & 2 & 2021.77 & 2029.53 & -1008.89 & NA & NA\\
+LDT Random Intercept & 3 & 1821.35 & 1832.99 & -907.68 & 202.42 & < .001\\
+LDT Full & 10 & 1803.31 & 1842.11 & -891.65 & 32.04 & < .001\\
+LST Intercept & 2 & 1783.12 & 1790.76 & -889.56 & NA & NA\\
+LST Random Intercept & 3 & 1547.94 & 1559.40 & -770.97 & 237.18 & < .001\\
+LST Full & 10 & 1537.51 & 1575.71 & -758.76 & 24.42 & .001\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\textit{Note.} AIC: Aikaike Information Criterion, BIC: Bayesian Information Criterion
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:Peak-table-est}Peak latency model estimates}
+\begin{tabular}{lccccc}
+\toprule
+Task & Predictor & $b$ & $SE$ & $t$ & $p$\\
+\midrule
+LDT & CZ & -0.24 & 0.45 & -0.53 & .600\\
+LDT & FCZ & -0.50 & 0.45 & -1.10 & .274\\
+LDT & FZ & -0.57 & 0.46 & -1.25 & .212\\
+LDT & PZ & 0.40 & 0.46 & 0.87 & .386\\
+LDT & Unrelated - Nonword & -0.91 & 0.41 & -2.23 & .026\\
+LDT & Unrelated - Semantic & 0.83 & 0.41 & 2.03 & .043\\
+LDT & Unrelated - Associative & 0.94 & 0.41 & 2.32 & .021\\
+LDT & Nonword - Semantic & 1.74 & 0.41 & 4.26 & < .001\\
+LDT & Nonword - Associative & 1.85 & 0.41 & 4.56 & < .001\\
+LDT & Semantic - Associative & 0.12 & 0.41 & 0.28 & .778\\
+LST & CZ & -0.28 & 0.37 & -0.77 & .441\\
+LST & FCZ & -0.43 & 0.37 & -1.17 & .245\\
+LST & FZ & -0.29 & 0.37 & -0.79 & .429\\
+LST & PZ & 0.27 & 0.37 & 0.72 & .475\\
+LST & Unrelated - Nonword & -1.35 & 0.33 & -4.11 & < .001\\
+LST & Unrelated - Semantic & -0.50 & 0.33 & -1.51 & .131\\
+LST & Unrelated - Associative & -1.08 & 0.33 & -3.28 & .001\\
+LST & Nonword - Semantic & 0.85 & 0.33 & 2.60 & .010\\
+LST & Nonword - Associative & 0.27 & 0.33 & 0.80 & .422\\
+LST & Semantic - Associative & -0.59 & 0.33 & -1.78 & .076\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\textit{Note.} The site control level was considered CPZ. Degrees of freedom are 333 for lexical decision tasks and 313 for letter search tasks.
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
 
 \emph{Lexical Decision Task}. After each set was processed as described
 in the data processing section, a multilevel. These stimuli were then
@@ -667,29 +752,30 @@ pairs averages and then compared against zero with single sample
 t-tests. The following hypotheses were expected. First, ? Since task
 demands require a focus at the lexical level, nonword pairings should
 not show significant differences from unrelated word pairs. However, if
-word processing is automatic in a letter search task ({\textbf{???}}),
-then nonwords pairs may show more negative waveforms as participants
-search the lexicon for the word pair. Second, ? Semantic and associative
-word pairs may have significantly positive values because priming will
-decrease the need to search the mental lexicon; however some research
-literature indicates that letter search tasks eliminate semantic priming
-(Smith \& Besner, 2001). Positive values would indicate a priming
-effect, which is evidence for activation spreading automatically within
-the mental lexicon. More negative or nonsignficant values would indicate
-processing at the lexical, but not semantic, level. Figure 2 portrays
-the N400 waveforms for the letter search task, and Table 2 contains the
-t-test values for the following conclusions. Although the average
-nonword waveform appears to be much lower than unrelated waveform at
-many sites, the variance across subjects was very large, and no
-significant differences were found. This finding could indicate that
-?wordness? did not matter since participants were searching at a lexical
-level for specific letters. Nearly all sites showed significant
-associative and semantic attenuation for the N400 waveform, semantic Cz
-being the only exception. In comparison, this result seems to suggest
-that letter search does not inhibit automatic activation of word meaning
-and association. The nonsignificant relationship between nonwords and
-unrelated word pairs could be either statistical power or a controlled
-search process, regardless of task demands.
+word processing is automatic in a letter search task (Marí-Beffa et al.,
+2005), then nonwords pairs may show more negative waveforms as
+participants search the lexicon for the word pair. Second, ? Semantic
+and associative word pairs may have significantly positive values
+because priming will decrease the need to search the mental lexicon;
+however some research literature indicates that letter search tasks
+eliminate semantic priming (Smith \& Besner, 2001). Positive values
+would indicate a priming effect, which is evidence for activation
+spreading automatically within the mental lexicon. More negative or
+nonsignficant values would indicate processing at the lexical, but not
+semantic, level. Figure 2 portrays the N400 waveforms for the letter
+search task, and Table 2 contains the t-test values for the following
+conclusions. Although the average nonword waveform appears to be much
+lower than unrelated waveform at many sites, the variance across
+subjects was very large, and no significant differences were found. This
+finding could indicate that ?wordness? did not matter since participants
+were searching at a lexical level for specific letters. Nearly all sites
+showed significant associative and semantic attenuation for the N400
+waveform, semantic Cz being the only exception. In comparison, this
+result seems to suggest that letter search does not inhibit automatic
+activation of word meaning and association. The nonsignificant
+relationship between nonwords and unrelated word pairs could be either
+statistical power or a controlled search process, regardless of task
+demands.
 
 \subsection{Task Performance}\label{task-performance}
 
@@ -708,6 +794,60 @@ t(14)=-3.45, p=.01). The other stimuli comparisons were all
 non-significant, and averages by task can be provided upon request.
 
 \subsection{Reaction Time Performance}\label{reaction-time-performance}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:RT-table-model}Response latency model statistics}
+\begin{tabular}{lcccccc}
+\toprule
+Model & $df$ & AIC & BIC & $\chi^2$ & $\Delta\chi^2$ & $p$\\
+\midrule
+LDT Intercept & 2 & 46747.79 & 46759.73 & -23371.90 & NA & NA\\
+LDT Random Intercept & 3 & 46100.94 & 46118.84 & -23047.47 & 648.85 & < .001\\
+LDT Full & 6 & 46016.82 & 46052.62 & -23002.41 & 90.12 & < .001\\
+LST Intercept & 2 & 45103.08 & 45115.02 & -22549.54 & NA & NA\\
+LST Random Intercept & 3 & 44701.15 & 44719.07 & -22347.57 & 403.93 & < .001\\
+LST Full & 6 & 44537.21 & 44573.05 & -22262.61 & 169.94 & < .001\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\textit{Note.} AIC: Aikaike Information Criterion, BIC: Bayesian Information Criterion
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:RT-table-est}Peak latency model estimates}
+\begin{tabular}{lccccc}
+\toprule
+Task & Predictor & $b$ & $SE$ & $t$ & $p$\\
+\midrule
+LDT & Unrelated - Nonword & 128.90 & 32.06 & 4.02 & < .001\\
+LDT & Unrelated - Semantic & -210.03 & 38.40 & -5.47 & < .001\\
+LDT & Unrelated - Associative & -124.96 & 38.46 & -3.25 & .001\\
+LDT & Nonword - Semantic & -338.93 & 38.69 & -8.76 & < .001\\
+LDT & Nonword - Associative & -253.87 & 38.73 & -6.55 & < .001\\
+LDT & Semantic - Associative & 85.06 & 44.13 & 1.93 & .054\\
+LST & Unrelated - Nonword & 236.10 & 23.91 & 9.88 & < .001\\
+LST & Unrelated - Semantic & -9.54 & 28.17 & -0.34 & .735\\
+LST & Unrelated - Associative & -103.36 & 28.02 & -3.69 & < .001\\
+LST & Nonword - Semantic & -245.64 & 28.86 & -8.51 & < .001\\
+LST & Nonword - Associative & -339.46 & 28.71 & -11.82 & < .001\\
+LST & Semantic - Associative & -93.82 & 32.36 & -2.90 & .004\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\textit{Note.} Degrees of freedom are 2863 for lexical decision tasks and 2880 for letter search tasks.
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
 
 Reaction time data were excluded for incorrect trials. Average reaction
 times were calculated for each task type and stimulus. The Van Selst and
@@ -791,8 +931,8 @@ without many controls for associative relationships embedded in word
 pairs. Certainly there is overlap between meaning and context use of
 words, but these differences can be studied separately using available
 databases (Hutchison, 2003). Our current study has supported findings by
-({\textbf{???}}), who showed activation during letter search tasks,
-along with the many studies on automatic activation during masked
+Marí-Beffa et al. (2005), who showed activation during letter search
+tasks, along with the many studies on automatic activation during masked
 priming (Deacon et al., 2000; Kiefer, 2002).
 
 Limitations do exist within these experiments. As previously mentioned a
@@ -859,6 +999,10 @@ Electrophysiology provides insights into dynamics of representation and
 processing in semantic memory. In B. H. Ross (Ed.), \emph{Psychology of
 learning and motivation} (pp. 1--44). Burlington, MA: Academic Press.
 
+\hypertarget{ref-Felbaum1998}{}
+Felbaum, C. (1998). \emph{WordNet: An Electronic Lexical Database}. MIT
+Press.
+
 \hypertarget{ref-Ford1983}{}
 Ford, M. (1983). A method for obtaining measures of local parsing
 complexity throughout sentences. \emph{Journal of Verbal Learning and
@@ -871,6 +1015,11 @@ in lexical access and spreading activation. \emph{Journal of
 Experimental Psychology: Human Perception and Performance},
 \emph{17}(3), 792--806.
 doi:\href{https://doi.org/10.1037//0096-1523.17.3.792}{10.1037//0096-1523.17.3.792}
+
+\hypertarget{ref-Gelman2006}{}
+Gelman, A. (2006). Multilevel (hierarchical) modeling: What it can and
+cannot do. \emph{Technometrics}, \emph{48}(3), 432--435.
+doi:\href{https://doi.org/10.1198/004017005000000661}{10.1198/004017005000000661}
 
 \hypertarget{ref-Hagoort2009}{}
 Hagoort, P., Baggio, G., \& Willems, R. M. (2009). Semantic unification.
@@ -952,6 +1101,12 @@ pairs of words: Evidence of a dependence between retrieval operations.
 \emph{Journal of Experimental Psychology}, \emph{90}(2), 227--234.
 doi:\href{https://doi.org/10.1037/h0031564}{10.1037/h0031564}
 
+\hypertarget{ref-Miller1991}{}
+Miller, J. (1991). Short report: Reaction time analysis with outlier
+exclusion: Bias varies with sample size. \emph{The Quarterly Journal of
+Experimental Psychology Section A}, \emph{43}(4), 907--912.
+doi:\href{https://doi.org/10.1080/14640749108400962}{10.1080/14640749108400962}
+
 \hypertarget{ref-Moss1995}{}
 Moss, H. E., Ostrin, R. K., Tyler, L. K., \& Marslen-Wilson, W. D.
 (1995). Accessing different types of lexical semantic information:
@@ -971,6 +1126,19 @@ of South Florida free association, rhyme, and word fragment norms.
 \emph{36}(3), 402--407.
 doi:\href{https://doi.org/10.3758/BF03195588}{10.3758/BF03195588}
 
+\hypertarget{ref-Patwardhan2003}{}
+Patwardhan, S., Banerjee, S., \& Pedersen, T. (2003). Using measures of
+semantic relatedness for word sense disambiguation. In \emph{Proceedings
+of the fourth international conference on intelligent text processing
+and computational linguistics} (Vol. 4, pp. 241--257). Springer, Berlin,
+Heidelberg.
+doi:\href{https://doi.org/10.1007/3-540-36456-0_24}{10.1007/3-540-36456-0\_24}
+
+\hypertarget{ref-Pinheiro2017}{}
+Pinheiro, J., Bates, D., Debroy, S., Sarkar, D., \& Team, R. C. (2017).
+nlme: Linear and nonlinear mixed effects models. Retrieved from
+\url{https://cran.r-project.org/package=nlme}
+
 \hypertarget{ref-Rolke2001}{}
 Rolke, B., Heil, M., Streb, J., \& Hennighausen, E. (2001). Missed prime
 words within the attentional blink evoke an N400 semantic priming
@@ -982,6 +1150,13 @@ Smith, M. C., \& Besner, D. (2001). Modulating semantic feedback in
 visual word recognition. \emph{Psychonomic Bulletin \& Review},
 \emph{8}(1), 111--117.
 doi:\href{https://doi.org/10.3758/BF03196146}{10.3758/BF03196146}
+
+\hypertarget{ref-Stolz1996a}{}
+Stolz, J. A., \& Besner, D. (1996). Role of set in visual word
+recognition: Activation and activation blocking as nonautomatic
+processes. \emph{Journal of Experimental Psychology: Human Perception
+and Performance}, \emph{22}(5), 1166--1177.
+doi:\href{https://doi.org/10.1037//0096-1523.22.5.1166}{10.1037//0096-1523.22.5.1166}
 
 \hypertarget{ref-Tse2007}{}
 Tse, C.-S., \& Neely, J. H. (2007). Semantic priming from

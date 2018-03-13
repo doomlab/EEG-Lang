@@ -2,3 +2,5 @@ base
 papaja
 nlme
 reshape
+ggplot2
+cowplot
