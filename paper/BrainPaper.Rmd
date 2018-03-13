@@ -604,6 +604,10 @@ Task data were analyzed for correctness in the lexical decision and letter searc
   
 ##Response Latency Performance
 
+    unrelated nonwords semantic associative
+LDT  1414.743 1543.688 1206.030    1285.310
+LST  1123.571 1351.963 1116.115    1024.625
+
 ```{r RT-DS, include=FALSE}
 ##import data
 Task <- read.csv("task.csv")

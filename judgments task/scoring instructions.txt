@@ -1,9 +1,0 @@
-For all of these tasks, please use the following scoring to enter your judgment:
-
-1 = 0-25
-3 = 26-50
-7 = 51-75
-9 = 76-100
-
-Please press 1 to start judging word pairs.
-Please ask the experimenter if you have any questions.
