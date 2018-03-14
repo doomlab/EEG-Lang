@@ -96,7 +96,8 @@ table(sitedata$stim, sitedata$task)
 
 ##only take the stims + task we need, use target word
 #stim 3 is NW, 4 is UR, 5 Assoc, 6 Sem
-#task 0 is LDT 1st, 2 is LDT 2nd, 4 is LST 1st, 6 is LST 2nd
+#task 0 is LST 1st, 2 is LST 2nd, 4 is LDT 1st, 6 is LDT 2nd
+#remember that you originally labelled these the other way, but then the stimulus presentation was red LST paired with 0 and 2 and green LDT paired with 4 and 6
 sitedata$stim = factor(sitedata$stim,
                        levels = 3:6,
                        labels = c("nonword", "unrelated", "associative", "semantic"))
@@ -105,6 +106,46 @@ finaldata = subset(sitedata, task == 2 | task == 6)
 write.csv(finaldata, "final_eeg.csv", row.names = F)
 ```
 
+```{r create-task-data, eval = FALSE, include = FALSE}
+##find the files
+list.filenames = list.files(path = "./task_data")
+##create empty list to store stuff
+list.data = list()
+##open all the files 
+for (i in 1:length(list.filenames)){
+  list.data[[i]]<-read.table(paste("./task_data/", list.filenames[i], sep = ""),
+                             quote="\"", comment.char="")
+  }
+names(list.data) = list.filenames
+library(data.table)
+fulldata = rbindlist(list.data, fill = T)
+fulldata$partno = c(rep(substr(list.filenames, 0, 2), each = 360))
+fulldata$stim = c(rep(substr(list.filenames[1:16], 4, 4), each = 30),
+                    rep(substr(list.filenames[17:length(list.filenames)], 4, 4), each = 20))
+
+fulldata$task = c(rep(substr(list.filenames[1:16], 5, 5), each = 30),
+                    rep(substr(list.filenames[17:length(list.filenames)], 5, 5), each = 20))
+
+
+##only take five sites we need
+levels(fulldata$V1)
+sitedata = subset(fulldata, V1 == "CPZ" | V1 == "CZ" | V1 == "FCZ" | V1 == "FZ" | V1 == "PZ")
+sitedata$V1 = droplevels(sitedata$V1)
+table(sitedata$V1, sitedata$partno)
+table(sitedata$stim, sitedata$task)
+#no 64 for participant 2
+
+##only take the stims + task we need, use target word
+#stim 3 is NW, 4 is UR, 5 Assoc, 6 Sem
+#task 0 is LST 1st, 2 is LST 2nd, 4 is LDT 1st, 6 is LDT 2nd
+#remember that you originally labelled these the other way, but then the stimulus presentation was red LST paired with 0 and 2 and green LDT paired with 4 and 6
+sitedata$stim = factor(sitedata$stim,
+                       levels = 3:6,
+                       labels = c("nonword", "unrelated", "associative", "semantic"))
+finaldata = subset(sitedata, task == 2 | task == 6)
+
+write.csv(finaldata, "final_eeg.csv", row.names = F)
+```
 Semantic facilitation through priming occurs when a related cue word speeds the processing of a following target word [@Meyer1971]. For example, if a person is reading about a yacht race, the word boat is easier to process because of previous activation in semantic memory. Research suggests that priming transpires by both automatic and controlled processes. The automatic model proposes that related words are linked in the brain due to overlapping features [@Collins1975]. Target words are activated without conscious control due to automatic spreading activation within related cognitive networks. Lexical and feature networks are thought to be stored separately, so that semantic priming is the activation from the feature network feeding back into the lexical level [@Stolz1996a]. The overlap of a second word's semantic relatedness makes word recognition easier because it, in essence, has already been processed. The controlled process model proposes that people actively use cognitive strategies to connect related words together. @Neely1991 describes both expectancy generation and post lexical matching as ways that target word processing may be speeded. In expectancy generation, people consciously attempt to predict the words and ideas that will appear next, especially in sentences. Whereas in post lexical matching, people delay processing of the second target word so that it can be compared to the cue word for evaluation. In both cases, the target word is quickened by its relationship to the cue word.
   
   Traditionally, priming has been tested with a simple word or nonword decision called a lexical decision task. Participants are shown a cue or priming word, followed by a related or unrelated target word for the word/nonword judgment. Priming occurs when the judgment for the target is speeded for related pairs over unrelated pairs. Lexical decision tasks have been criticized for their inability to distinguish between automatic and controlled processing, so both single presentation lexical decision tasks and masked priming manipulations  have been introduced to negate controlled processing [@Ford1983]. In a single lexical decision task, participants assess both the cue and target word so that they are not as overtly paired together. Experimenters might also mask or distort the cue word, so that participants do not believe they can perceive the cue word. Even though words are garbled, word perception occurs at a subliminal level and often facilitates the target word with automatic activation. 
@@ -150,6 +191,8 @@ The system used was a 32 Channel EEG Cap connected to a NuAmps monopolar digital
 This experiment consisted of 360 word pairs separated into levels in which the target words were unrelated to the prime (120), semantically associated to the prime (60), associatively related to the prime (60), or were nonwords (120). We used only a small number of related word pairs to try to reduce expectancy effects described in the introduction [@Neely1991]. These 360 pairs were split evenly between the lexical decision and letter search task, therefore, each task contained 60 unrelated pairs, 30 semantically related pairs, 30 associatively related pairs, and 60 nonword pairings. The ratio of yes/no correct answers for words and nonwords in the lexical decision task was 2:1 and 1:1 yes/no decisions in the letter search task. Splitting the nonword pairs over both the letter search and lexical decision task created a higher yes/no ratio for the lexical decision task, which was controlled for by mixing both tasks together.
   
 The stimuli were selected from the @Nelson2004 associative word norms and @Maki2004 semantic word norms. The associative word pairs were chosen using the criteria that they were highly associatively related, having an FSG score greater than .50; with little or no semantic similarities, determined by having a JCN score of greater than 20. An example of an associative pair would be *dairy-cow*. The semantic word pairs were chosen using the criteria that they had a high semantic relatedness shown in a JCN of 3 or less; and were not associatively related, having an FSG of less than .01 (e.g., *inn-lodge*). The unrelated words were chosen so that they had no similarities (were unpaired in the databases), such as *blender* and *compass.* For non-word pairs, the target word had one letter changed so that it no longer represented a real word, yet the structure was left intact to require that the participant process the word cognitively. Essentially, non-words were orthographically similar to its real word counterpart, except for the change in a single letter. For example, the word *pond* can be changed to *pund* to produce a non-word target. All materials and their database values can be found at our Open Science Foundation page: https://osf.io/h5sd6/.
+
+--- present values about the stimuli here---
   
 ##Procedure
 
@@ -157,7 +200,7 @@ Testing occurred in one session consisting of six blocks of acquired data, broke
   
 We modeled the current task after @Smith2001 lexical decision and letter search task combination. @Smith2001 used a choice task procedure, where the color of the target word indicated the target task. One color denoted lexical decision with another color denoting letter search. The lexical decision task involved participants observing a word onscreen and deciding whether or not it was a word or non-word (such as *tortoise* and *werm*). Nonrelated word pairs were created by taking prime and target words from related pairs and randomly rearranging them to eliminate relationships between primes and targets. The letter search task involved participants observing a word onscreen and deciding whether it contained a repeated letter or not (i.e. the repeated letters in *doctor* versus no repeated letters in *nurse*). Words were presented onscreen, and would stay there until the participant pressed the corresponding keys for yes and no. Participant responses were time limited and truncated to 60 seconds. The 1 and 9 keys were used on the number row of the keyboard, in the participant's lap to help eliminate muscle movement artifact in the data. 
   
-Participants were first given instructions on how to perform the lexical decision task, followed by 15 practice trials. Next, they were given instructions on how to judge the letter search task, followed by 15 practice trials. Participants were then given a practice session with both letter search and lexical decision trials mixed together. Trials were color coded for the type of decision participants had to complete (i.e. letter search was green, while lexical decision was red). The experiment made use of six sets of 60 randomly assigned word pairs for a total of 360 trials. These trials were presented in Arial 19-point font, and the inter-trial interval was set to two  seconds to allow complete recording of the N400 waveform. Trials were recorded in five minute blocks, and between blocks participants were allowed to rest to prevent fatigue. The current task differed from @Smith2001 in that participants responded to every word (prime and targets), instead of only targets. Therefore, there was no typical fixed stimulus onset asynchrony (SOA) because participant responses were self-paced. 
+Participants were first given instructions on how to perform the lexical decision task, followed by 15 practice trials. Next, they were given instructions on how to judge the letter search task, followed by 15 practice trials. Participants were then given a practice session with both letter search and lexical decision trials mixed together. Trials were color coded for the type of decision participants had to complete (i.e., letter search was green, while lexical decision was red). The experiment made use of six sets of 60 randomly assigned word pairs for a total of 360 trials. These trials were presented in Arial 19-point font, and the inter-trial interval was set to two  seconds to allow complete recording of the N400 waveform. Trials were recorded in five minute blocks, and between blocks participants were allowed to rest to prevent fatigue. The current task differed from @Smith2001 in that participants responded to every word (prime and targets), instead of only targets. Therefore, there was no typical fixed stimulus onset asynchrony (SOA) because participant responses were self-paced. 
   
 #Results
 
@@ -169,39 +212,39 @@ The data were cleared of artifact data using EEGLAB, an open source MATLAB tool 
 
 ```{r create-area-peak, include = FALSE}
 finaldata = read.csv("final_eeg.csv")
-
+finaldata$task = factor(finaldata$task,
+                        levels = c(2,6),
+                        labels = c("LST", "LDT"))
 #put site at the end
 colnames(finaldata)[1] = "site"
 finaldata = finaldata[ , c(2:ncol(finaldata), 1)]
 
 #columns are -150 ms to 999 ms around stimulus presentation
-#want to calculate area under the curve for 300 to 600 (so 450:750 including the first 150)
-#subtract a constant so they are all negative
-largest = max(apply(finaldata[ , 450:750], 1, max))
-largest$area = apply(finaldata[ , 450:750], 1, function(x){trapz(300:600, as.numeric((x-largest)))})
-```
+#find peaks
+finaldata$n4peak = apply(finaldata[ , 450:650], 1, min)
+tapply(finaldata$n4peak, list(finaldata$stim, finaldata$task), mean)
+#find where peak
+finaldata$n4peakW = apply(finaldata[ , 450:650], 1, which.min) + 449
+tapply(finaldata$n4peakW, list(finaldata$stim, finaldata$task), mean)
 
+#calculate from 450 to 650, which is 300 to 500
+#subtract a constant so they are all negative
+largest = apply(finaldata[ , 450:650], 1, max)
+largestvalue = max(largest)
+finaldata$area = apply(finaldata[ , 450:650], 1, function(x){trapz(300:500, as.numeric((x-largestvalue)))})
+tapply(finaldata$area, list(finaldata$stim, finaldata$task), mean)
+```
 
 ```{r area-DS, include=FALSE}
 ##import data
-curve <- read.csv("area curve.csv")
+longdata <- finaldata[ , c("site" , "stim", "task", "partno", "area" )]
 ##Non-Recursive Procedure with Moving Criterion
 ## 15 = 2.326  20 = 2.391  average equals 2.3585
-
-#melt
-longdata = melt(curve,
-                id = c("site", "type", "task"), 
-                measured = c("X1","X2","X3","X4","X5","X6",
-                             "X7","X8","X9","X10","X11",
-                             "X12","X13","X14","X15","X16",
-                             "X17","X18"))
 colnames(longdata) = c("site","type","task","partno", "curve")
 
 table(longdata$type)
-longdata$type=factor(longdata$type,
-                     levels = c("unrelated","nonword","semantic","assoc"))
-
-
+longdata$type = factor(longdata$type, 
+                       levels = c("unrelated", "nonword", "semantic", "associative"))
 ##non recursive outliers
 zscore = unsplit(lapply(split(longdata$curve, list(longdata$partno, longdata$task)),
                         scale),list(longdata$partno, longdata$task))
@@ -236,7 +279,7 @@ Table \@ref(tab:area-table-model) includes the model statistics for the lexical 
 
 ```{r area-LDT, include = FALSE}
 ##split on task
-LDT = subset(noout, task == "ldt")
+LDT = subset(noout, task == "LDT")
 
 ####ldt models####
 LDTmodel1 = gls(curve ~ 1, 
@@ -257,7 +300,7 @@ LDToverall = anova(LDTmodel1, LDTmodel2, LDTmodel3)
 
 levels(LDT$type)
 LDT$type2 = factor(LDT$type,
-                  levels = c("nonword", "unrelated", "semantic", "assoc"))
+                  levels = c("nonword", "unrelated", "semantic", "associative"))
 
 LDTmodel3.1 = lme(curve ~ site + type2, 
                 data = LDT, method = "ML", 
@@ -265,7 +308,7 @@ LDTmodel3.1 = lme(curve ~ site + type2,
                 random = ~1|partno)
 
 LDT$type3 = factor(LDT$type,
-                  levels = c("semantic", "nonword", "unrelated", "assoc"))
+                  levels = c("semantic", "nonword", "unrelated", "associative"))
 
 LDTmodel3.2 = lme(curve ~ site + type3, 
                 data = LDT, method = "ML", 
@@ -277,11 +320,13 @@ LDTmodel3.2 = lme(curve ~ site + type3,
 ```{r graph-LDT, echo=FALSE,  fig.cap = "SOMETHING SOMETHING HERE", fig.height=8, fig.width=8}
 
 #overall data
-graph_data = read.csv("graph_data.csv")
-colnames(graph_data)[1:3] = c('Task','Stimuli','Site')
-graph_data$Task = factor(graph_data$Task)
-graph_data$Stimuli = factor(graph_data$Stimuli)
-graph_data$Site = factor(graph_data$Site)
+#need to average down by participant
+graph_data = finaldata[ , c(1152, 1153, 1154, 151:850) ]
+colnames(graph_data)[1:3] = c('Stimuli','Task','Site')
+
+graph_data = aggregate(graph_data[, 4:ncol(graph_data)], 
+          list(graph_data$Stimuli, graph_data$Task, graph_data$Site), mean)
+colnames(graph_data)[1:3] = c('Stimuli','Task','Site')
 longdata = melt(graph_data,
                    id = c('Task','Stimuli','Site'))
 longdata$variable = as.numeric(longdata$variable)
@@ -354,7 +399,8 @@ ldt_plot
 
 ```{r area-LST, include = FALSE}
 ##split on task
-LST = subset(noout, task == "lst")
+
+LST = subset(noout, task == "LST")
 
 ####LST models####
 LSTmodel1 = gls(curve ~ 1, 
@@ -375,7 +421,7 @@ LSToverall = anova(LSTmodel1, LSTmodel2, LSTmodel3)
 
 levels(LST$type)
 LST$type2 = factor(LST$type,
-                  levels = c("nonword", "unrelated", "semantic", "assoc"))
+                  levels = c("nonword", "unrelated", "semantic", "associative"))
 
 LSTmodel3.1 = lme(curve ~ site + type2, 
                 data = LST, method = "ML", 
@@ -383,13 +429,12 @@ LSTmodel3.1 = lme(curve ~ site + type2,
                 random = ~1|partno)
 
 LST$type3 = factor(LST$type,
-                  levels = c("semantic", "nonword", "unrelated", "assoc"))
+                  levels = c("semantic", "nonword", "unrelated", "associative"))
 
 LSTmodel3.2 = lme(curve ~ site + type3, 
                 data = LST, method = "ML", 
                 na.action = "na.omit",
                 random = ~1|partno)
-
 ```
 
 ```{r graph-LST, echo=FALSE,  fig.cap = "SOMETHING SOMETHING HERE", fig.height=8, fig.width=8}
@@ -498,22 +543,14 @@ apa_table(tableprint,
 
 ```{r Peak-DS, include=FALSE}
 ##import data
-Peak <- read.csv("Peak.csv")
+longdata <- finaldata[ , c("site" , "stim", "task", "partno", "n4peak" )]
 ##Non-Recursive Procedure with Moving Criterion
 ## 15 = 2.326  20 = 2.391  average equals 2.3585
-#melt
-Peak = Peak[ , -c(1) ]
-longdata = melt(Peak,
-                id = c("site", "type.1", "task"), 
-                measured = c("X1","X2","X3","X4","X5","X6",
-                             "X7","X8","X9","X10","X11",
-                             "X12","X13","X14","X15","X16",
-                             "X17","X18"))
 colnames(longdata) = c("site","type","task","partno", "peak")
+
 table(longdata$type)
-longdata$type=factor(longdata$type,
-                     levels = c("unrelated","nonwords","semantic","associative"))
-table(longdata$type)
+longdata$type = factor(longdata$type, 
+                       levels = c("unrelated", "nonword", "semantic", "associative"))
 
 ##non recursive outliers
 zscore = unsplit(lapply(split(longdata$peak, list(longdata$partno, longdata$task)),
@@ -524,7 +561,7 @@ noout = subset(longdata, abs(zscore) < 2.3585) ##exclude outliers
 
 ```{r Peak-LDT, include = FALSE}
 ##split on task
-LDT = subset(noout, task == "ldt")
+LDT = subset(noout, task == "LDT")
 
 ####ldt models####
 LDTmodel1 = gls(peak ~ 1, 
@@ -545,7 +582,7 @@ LDToverall = anova(LDTmodel1, LDTmodel2, LDTmodel3)
 
 levels(LDT$type)
 LDT$type2 = factor(LDT$type,
-                  levels = c("nonwords", "unrelated", "semantic", "associative"))
+                  levels = c("nonword", "unrelated", "semantic", "associative"))
 
 LDTmodel3.1 = lme(peak ~ site + type2, 
                 data = LDT, method = "ML", 
@@ -553,7 +590,7 @@ LDTmodel3.1 = lme(peak ~ site + type2,
                 random = ~1|partno)
 
 LDT$type3 = factor(LDT$type,
-                  levels = c("semantic", "nonwords", "unrelated", "associative"))
+                  levels = c("semantic", "nonword", "unrelated", "associative"))
 
 LDTmodel3.2 = lme(peak ~ site + type3, 
                 data = LDT, method = "ML", 
@@ -564,7 +601,7 @@ LDTmodel3.2 = lme(peak ~ site + type3,
 
 ```{r Peak-LST, include = FALSE}
 ##split on task
-LST = subset(noout, task == "lst")
+LST = subset(noout, task == "LST")
 
 ####LST models####
 LSTmodel1 = gls(peak ~ 1, 
@@ -585,7 +622,7 @@ LSToverall = anova(LSTmodel1, LSTmodel2, LSTmodel3)
 
 levels(LST$type)
 LST$type2 = factor(LST$type,
-                  levels = c("nonwords", "unrelated", "semantic", "associative"))
+                  levels = c("nonword", "unrelated", "semantic", "associative"))
 
 LSTmodel3.1 = lme(peak ~ site + type2, 
                 data = LST, method = "ML", 
@@ -593,13 +630,12 @@ LSTmodel3.1 = lme(peak ~ site + type2,
                 random = ~1|partno)
 
 LST$type3 = factor(LST$type,
-                  levels = c("semantic", "nonwords", "unrelated", "associative"))
+                  levels = c("semantic", "nonword", "unrelated", "associative"))
 
 LSTmodel3.2 = lme(peak ~ site + type3, 
                 data = LST, method = "ML", 
                 na.action = "na.omit",
                 random = ~1|partno)
-
 ```
 
 ```{r Peak-table-model, results='asis', echo = FALSE}
@@ -656,6 +692,11 @@ apa_table(tableprint,
 ```
   
 ##Task Performance
+
+
+
+One persons data was corrupt for the task component and was excluded from these analyses. 
+
 ##gotta redo do this shiz
 Task data were analyzed for correctness in the lexical decision and letter search tasks individually. Error rates were tested with a 2X4 (task by stimulus) repeated measures ANOVA. Overall, performance in the letter search task (M=.97, SD=.02) was equal to the lexical decision task (M=.97, SD=.02), F(1,13)=1.54, p=.24. The interaction between task type and stimuli was also not significant F(3,39)=1.74, p=.18. The different types of stimuli showed a difference in performance, F(3,39)=9.85, p<.001, between nonwords (M=.94, SD=.03, t(13)=-3.02, p=.01) and unrelated word pairs (M=.97, SD=.01); nonwords and associative word pairs (M=.98, SD=.01, t(14)=-5.55, p<.001); and nonwords and semantic word pairs (M=.98, SD=.02, t(14)=-3.45, p=.01). The other stimuli comparisons were all non-significant, and averages by task can be provided upon request.
   
