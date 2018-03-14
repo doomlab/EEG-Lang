@@ -1,0 +1,178 @@
+---
+title: "peak analysis"
+author: "Erin M. Buchanan"
+date: "3/14/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##N400 Peak Analysis
+In addition to the area under the curve, the peak amplitude between 300 and 500 msec for each site, stimuli type, and task was determined. Seven outlier points were found and excluded from the analysis. The same MLM analysis described above was used to explore peak differences as the dependent variable with site (control) and stimuli type as the independent variables. Table \@ref(tab:Peak-table-model) indicates the overall model statistics, and Table \@ref(tab:Peak-table-est) portrays the coefficient estimates. The addition of participants as a random intercept factor was better than the intercept-only model, and therefore, this component was added to the predictor model. The addition of the control and stimuli variables were significant for both lexical decision, *p* < .001, and letter search tasks, *p* = .004. 
+
+For the lexical decision task, only nonword to semantic and nonword to associative comparisons were significant. Generally, nonwords had more negative peaks than other stimuli, but this difference was not significant between unrelated and nonwords. Unrelated word pairs did not show differences to related word pairs, although the differences in amplitude (approximately one point) were larger than the differences between semantic and associative pairs (less than a quarter of a point). For the letter search task, nonword pairs were more negative than unrelated and semantic pairs. Associative pairs were more negative than unrelated pairs, but not different from semantic or nonword pairs. Last, semantics and unrelated were not different. 
+
+means 
+    Unrelated   Nonword   Semantic Associative
+LST -1.481247 -2.748303 -1.8673112   -2.457497
+LDT -1.548028 -2.409772 -0.6779652   -0.558060
+
+The LDT makes sense but the LST just doesn't even jive much with the graphs - think there's a lot of variability here that's not useful. 
+
+sds
+    Unrelated  Nonword Semantic Associative
+LST  3.507447 3.137207  3.48470    3.874392
+LDT  3.720940 4.613196  3.78005    3.941254
+
+```{r Peak-DS, include=FALSE}
+##import data
+longdata <- finaldata[ , c("site" , "stim", "task", "partno", "n4peak" )]
+##Non-Recursive Procedure with Moving Criterion
+## 15 = 2.326  20 = 2.391  average equals 2.3585
+colnames(longdata) = c("site","type","task","partno", "peak")
+
+table(longdata$type)
+longdata$type = factor(longdata$type, 
+                       levels = c("unrelated", "nonword", "semantic", "associative"),
+                       labels = c("Unrelated", "Nonword", "Semantic", "Associative"))
+
+##non recursive outliers
+zscore = unsplit(lapply(split(longdata$peak, list(longdata$partno, longdata$task)),
+                        scale),list(longdata$partno, longdata$task))
+summary(abs(zscore) < 2.3585) ##see how many outliers
+noout = subset(longdata, abs(zscore) < 2.3585) ##exclude outliers
+```
+
+```{r Peak-LDT, include = FALSE}
+##split on task
+LDT = subset(noout, task == "LDT")
+
+####ldt models####
+LDTmodel1 = gls(peak ~ 1, 
+                data = LDT, method = "ML", 
+                na.action = "na.omit")
+
+LDTmodel2 = lme(peak ~ 1, 
+                data = LDT, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+LDTmodel3 = lme(peak ~ site + type, 
+                data = LDT, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+LDToverall = anova(LDTmodel1, LDTmodel2, LDTmodel3)
+
+levels(LDT$type)
+LDT$type2 = factor(LDT$type,
+                  levels = c("Nonword", "Unrelated", "Semantic", "Associative"))
+
+LDTmodel3.1 = lme(peak ~ site + type2, 
+                data = LDT, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+LDT$type3 = factor(LDT$type,
+                  levels = c("Semantic", "Nonword", "Unrelated", "Associative"))
+
+LDTmodel3.2 = lme(peak ~ site + type3, 
+                data = LDT, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+```
+
+```{r Peak-LST, include = FALSE}
+##split on task
+LST = subset(noout, task == "LST")
+
+####LST models####
+LSTmodel1 = gls(peak ~ 1, 
+                data = LST, method = "ML", 
+                na.action = "na.omit")
+
+LSTmodel2 = lme(peak ~ 1, 
+                data = LST, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+LSTmodel3 = lme(peak ~ site + type, 
+                data = LST, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+LSToverall = anova(LSTmodel1, LSTmodel2, LSTmodel3)
+
+levels(LST$type)
+LST$type2 = factor(LST$type,
+                  levels = c("Nonword", "Unrelated", "Semantic", "Associative"))
+
+LSTmodel3.1 = lme(peak ~ site + type2, 
+                data = LST, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+
+LST$type3 = factor(LST$type,
+                  levels = c("Semantic", "Nonword", "Unrelated", "Associative"))
+
+LSTmodel3.2 = lme(peak ~ site + type3, 
+                data = LST, method = "ML", 
+                na.action = "na.omit",
+                random = ~1|partno)
+```
+
+```{r Peak-table-model, results='asis', echo = FALSE}
+tableprint = matrix(NA, nrow = 6, ncol = 7)
+tableprint[ , 1] = c("LDT Intercept", "LDT Random Intercept", "LDT Full",
+                     "LST Intercept", "LST Random Intercept", "LST Full")
+tableprint[ , 2] = c(LDToverall$df, LSToverall$df)
+tableprint[ , 3] = c(LDToverall$AIC, LSToverall$AIC)
+tableprint[ , 4] = c(LDToverall$BIC, LSToverall$BIC)
+tableprint[ , 5] = c(LDToverall$logLik, LSToverall$logLik)
+tableprint[ , 6] = c(LDToverall$L.Ratio, LSToverall$L.Ratio)
+tableprint[ , 7] = c(LDToverall$`p-value`, LSToverall$`p-value`)
+
+tableprint[ , 3:6] = printnum(as.numeric(tableprint[ , 3:6]), 
+                              gt1 = TRUE, zero = TRUE, big.mark="")
+tableprint[ , 7] = printnum(as.numeric(tableprint[ , 7]), 
+                              gt1 = FALSE, zero = FALSE, digits = 3)
+
+apa_table.latex(as.data.frame(tableprint), 
+          align = c("l", rep("c", 6)), 
+          caption = "Peak latency model statistics",
+          note = "AIC: Aikaike Information Criterion, BIC: Bayesian Information Criterion", 
+          escape = FALSE,
+          col.names = c("Model", "$df$", "AIC", "BIC", "$\\chi^2$", "$\\Delta\\chi^2$", "$p$"))
+```
+
+```{r Peak-table-est, results='asis', echo = FALSE}
+tableprint = matrix(NA, nrow = 20, ncol = 6)
+tableprint[ , 1] = c(rep("LDT", 10), rep("LST", 10)) 
+tableprint[ , 2] = rep(c("CZ", "FCZ", "FZ", "PZ", "Unrelated - Nonword", 
+                     "Unrelated - Semantic", "Unrelated - Associative",
+                     "Nonword - Semantic", "Nonword - Associative", 
+                     "Semantic - Associative"), 2)
+tableprint[1:7 , 3:6] = summary(LDTmodel3)$tTable[-1 , -3]
+tableprint[8:9 , 3:6] = summary(LDTmodel3.1)$tTable[7:8 , -3]
+tableprint[10 , 3:6] = summary(LDTmodel3.2)$tTable[8 , -3]
+
+tableprint[11:17 , 3:6] = summary(LSTmodel3)$tTable[-1 , -3]
+tableprint[18:19 , 3:6] = summary(LSTmodel3.1)$tTable[7:8 , -3]
+tableprint[20 , 3:6] = summary(LSTmodel3.2)$tTable[8 , -3]
+
+tableprint[ , 3:5] = printnum(as.numeric(tableprint[ , 3:5]), 
+                              gt1 = TRUE, zero = TRUE)
+tableprint[ , 6] = printnum(as.numeric(tableprint[ , 6]), 
+                              gt1 = FALSE, zero = FALSE, digits = 3)
+
+apa_table(tableprint, 
+          align = c("l", rep("c", 6)), 
+          caption = "Peak latency model estimates",
+          escape = FALSE,
+          note = "The site control level was considered CPZ. Degrees of freedom are 333 for lexical decision tasks and 330 for letter search tasks.",
+          col.names = c("Task", "Predictor", "$b$", "$SE$", "$t$", "$p$"))
+
+```

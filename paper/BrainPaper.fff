@@ -16,3 +16,12 @@
 \end{figure*}
 \efloatseparator
  
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{BrainPaper_files/figure-latex/RT-graph-1.pdf}
+\caption{\label{fig:RT-graph}SOMETHING SOMETHING HERE}
+\end{figure*}
+\efloatseparator
+ 
