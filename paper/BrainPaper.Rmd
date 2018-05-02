@@ -144,9 +144,11 @@ With the databases described above, orthogonal word pair stimuli can be created 
 
 Twenty undergraduate students were recruited from the University of Mississippi (thirteen women and seven men), and all volunteered to participate. All participants were English speakers. The experiment was carried out with the permission of the University's Institutional Review Board, and all participants signed corresponding consent forms. One participant's EEG data was corrupted and could not be used, and another participant was excluded for poor task performance (below chance), leaving eighteen participants (twelve women and six men).
   
-##Apparatus
+##EEG Acquisition
 
-The system used was a 32 Channel EEG Cap connected to a NuAmps monopolar digital amplifier, which was connected to a computer running SCAN 4.5 software to record the data. The SCAN software was capable of managing continuous digital data captured by the NuAmps amplifier. STIM2 was used to coordinate the timing issues associated with Windows operating system and collecting EEG data on a separate computer. STIM2 also served as the software base for programming and operating experiments of this nature. The sensors in the EEG cap were sponges injected with 130 ml of electrically conductive solution (non-toxic and non-irritating). Also, to protect the participants and equipment, a surge protector was used at all times during data acquisition. The sensors recorded electrical activity just below the scalp, displaying brain activation. This data was amplified by the NuAmps hardware, and processed and recorded by the SCAN software.
+The system used was a 32 Channel EEG Quik-Cap (https://compumedicsneuroscan.com/product/32-channels-quik-cap/) connected to a NuAmps monopolar digital amplifier (https://compumedicsneuroscan.com/product/nuamps-40-channel-eeg-erp-amplifier/), which was connected to a computer running SCAN 4.5 software to record the data. The Quik-Cap includes Ag/AgCl sintered ring electrodes and the layout follows the International 10/20 system with the following sites: F7, FT7, T7, TP7, P7, FP1, F3, FC3, C3, CP3, P3, O1, Fz, FCz, Cz, CPz, Pz, Oz, FP2, F4, FC4, C4, CP4, P4, O2, F8, FT8, T8, TP8, and P8. The ground electrode was embedded in the cab at FPz, and two elecctrodes were attached to the mastoid bones. 
+
+The SCAN software was capable of managing continuous digital data captured by the NuAmps amplifier. STIM2 was used to coordinate the timing issues associated with Windows operating system and collecting EEG data on a separate computer (https://compumedicsneuroscan.com/product/stim2-precise-stimulus-presentation/). STIM2 also served as the software base for programming and operating experiments of this nature. The sensors in the EEG cap were sponges injected with 130 ml of electrically conductive solution (non-toxic and non-irritating). Also, to protect the participants and equipment, a surge protector was used at all times during data acquisition. The sensors recorded electrical activity just below the scalp, displaying brain activation. This data was amplified by the NuAmps hardware, and processed and recorded continuously by the SCAN software. At the start of th experiment, adjustments were made until impedance values were below 5 k$\Omega$. Data processing is described below. 
   
 ##Materials
 
@@ -164,13 +166,13 @@ sdsJCN = tapply(task$jcn, list(task$task, task$type), sd, na.rm = T)
 
 The stimuli were selected from the @Nelson2004 associative word norms and @Maki2004 semantic word norms. The associative word pairs were chosen using the criteria that they were highly associatively related, having an FSG score greater than .50; with little or no semantic similarities, determined by having a JCN score of greater than 20. An example of an associative pair would be *dairy-cow*. The semantic word pairs were chosen using the criteria that they had a high semantic relatedness shown in a JCN of 3 or less; and were not associatively related, having an FSG of less than .01 (e.g., *inn-lodge*). For associative word pairs, the mean FSG was *M* = `r printnum(meansFSG[1,1], gt1 = F)` (*SD* = `r printnum(sdsFSG[1,1], gt1 = F)`) for the LDT, and *M* = `r printnum(meansFSG[2,1], gt1 = F)` (*SD* = `r printnum(sdsFSG[2,1], gt1 = F)`) for the LST. The JCN was high for associative pairs, LDT *M* = `r printnum(meansJCN[1,1])` (*SD* = `r printnum(sdsJCN[1,1])`) and LST *M* = `r printnum(meansJCN[2,1])` (*SD* = `r printnum(sdsJCN[2,1])`). For semantic pairs, the JCN was low for both the LDT, *M* = `r printnum(meansJCN[1,2])` (*SD* = `r printnum(sdsJCN[1,2])`), and LST, *M* = `r printnum(meansJCN[2,2])` (*SD* = `r printnum(sdsJCN[2,2])`). The FSG was kept low for the semantic pairs, LDT, *M* = `r printnum(meansFSG[1,2], gt1 = F)` (*SD* = `r printnum(sdsFSG[1,2], gt1 = F)`), and LST, *M* = `r printnum(meansFSG[2,2], gt1 = F)` (*SD* = `r printnum(sdsFSG[2,2], gt1 = F)`).
 
-The unrelated words were chosen so that they had no similarities (were unpaired in the databases), such as *blender* and *compass.* For Nonword pairs, the target word had one letter changed so that it no longer represented a real word, yet the structure was left intact to require that the participant process the word cognitively. Essentially, Nonwords were orthographically similar to its real word counterpart, except for the change in a single letter. For example, the word *pond* can be changed to *pund* to produce a Nonword target. All materials and their database values can be found at our Open Science Foundation page: https://osf.io/h5sd6/, along with the markdown template used to create this paper [@R-papaja]. 
+The unrelated words were chosen so that they had no similarities (were unpaired in the databases), such as *blender* and *compass.* For nonword pairs, the target word had one letter changed so that it no longer represented a real word, yet the structure was left intact to require that the participant process the word cognitively. Essentially, nonwords were orthographically similar to its real word counterpart, except for the change in a single letter. For example, the word *pond* can be changed to *pund* to produce a nonword target. All materials and their database values can be found at our Open Science Foundation page: https://osf.io/h5sd6/, along with the markdown template used to create this paper [@R-papaja]. 
 
 ##Procedure
 
 Testing occurred in one session consisting of six blocks of acquired data, broken up by brief rest periods. Before each participant was measured, the system was configured to the correct settings, and the hardware prepared. Two reference channels, which define zero voltage, were placed on the right and left mastoid bones. 
   
-We modeled the current task after @Smith2001 lexical decision and letter search task combination. @Smith2001 used a choice task procedure, where the color of the target word indicated the target task. One color denoted lexical decision with another color denoting letter search. The lexical decision task involved participants observing a word onscreen and deciding whether or not it was a word or Nonword (such as *tortoise* and *werm*). Nonrelated word pairs were created by taking prime and target words from related pairs and randomly rearranging them to eliminate relationships between primes and targets. The letter search task involved participants observing a word onscreen and deciding whether it contained a repeated letter or not (i.e., the repeated letters in *doctor* versus no repeated letters in *nurse*). Words were presented onscreen, and would stay there until the participant pressed the corresponding keys for yes and no. Participant responses were time limited and truncated to 60 seconds. The 1 and 9 keys were used on the number row of the keyboard, in the participant's lap to help eliminate muscle movement artifact in the data. 
+We modeled the current task after @Smith2001 lexical decision and letter search task combination. @Smith2001 used a choice task procedure, where the color of the target word indicated the target task. One color denoted lexical decision with another color denoting letter search. The lexical decision task involved participants observing a word onscreen and deciding whether or not it was a word or nonword (such as *tortoise* and *werm*). Nonrelated word pairs were created by taking prime and target words from related pairs and randomly rearranging them to eliminate relationships between primes and targets. The letter search task involved participants observing a word onscreen and deciding whether it contained a repeated letter or not (i.e., the repeated letters in *doctor* versus no repeated letters in *nurse*). Words were presented onscreen, and would stay there until the participant pressed the corresponding keys for yes and no. Participant responses were time limited and truncated to 60 seconds. The 1 and 9 keys were used on the number row of the keyboard, in the participant's lap to help eliminate muscle movement artifact in the data. 
   
 Participants were first given instructions on how to perform the lexical decision task, followed by 15 practice trials. Next, they were given instructions on how to judge the letter search task, followed by 15 practice trials. Participants were then given a practice session with both letter search and lexical decision trials mixed together. Trials were color coded for the type of decision participants had to complete (i.e., letter search was red, while lexical decision was green). The experiment made use of six sets of 60 randomly assigned word pairs for a total of 360 trials. These trials were presented in Arial 19-point font, and the inter-trial interval was set to two  seconds to allow complete recording of the N400 waveform. Trials were recorded in five minute blocks, and between blocks participants were allowed to rest to prevent fatigue. The current task differed from @Smith2001 in that participants responded to every word (prime and targets), instead of only targets. Therefore, there was no typical fixed stimulus onset asynchrony (SOA) because participant responses were self-paced. 
   
@@ -178,7 +180,9 @@ Participants were first given instructions on how to perform the lexical decisio
 
 ##N400 Waveform Analysis
 
-The data were cleared of artifact data using EEGLAB, an open source MATLAB tool for processing electrophysiological data. The program automatically scanned for and removed artifacts caused by eye-blinking. Next, the datasets were visually inspected and any remaining corrupted sections were removed manually. Ninety percent of the data was retained across all trials and stimulus types after muscular artifact data were removed. However, a loss rate of 20-30 percent is not uncommon, especially with older EEG systems. The data were combined by task and stimulus type exclusively for the second word in each pair. Five sites were chosen to examine priming for nonwords, associative and semantic word pairs based on a survey of the literature. Fz, FCz, Cz, CPz, and Pz were used from the midline. Oz was excluded due to equipment problems across all participants. Using MATLAB, the N400 area under the curve was calculated for each electrode site, stimulus, and task (averaging over trials) 300-500 msec after stimuli presentation. A constant score was subtracted from all EEG points to ensure all curves were below zero for area under the curve calculations.  
+###EEG Preparation
+
+The data were cleared of artifact data using EEGLAB [http://sccn.ucsd.edu/eeglab/; @Delorme2004], an open source MATLAB tool for processing electrophysiological data. The program automatically scanned for and removed artifacts caused by eye-blinking using independent component analysis. Next, the datasets were visually inspected and any remaining corrupted sections were removed manually. Ninety percent of the data was retained across all trials and stimulus types after muscular artifact data were removed. However, a loss rate of 20-30 percent is not uncommon, especially with older EEG systems. The data were combined by task and stimulus type exclusively for the second word in each pair. Five sites were chosen to examine priming for nonwords, associative and semantic word pairs based on a survey of the literature. Fz, FCz, Cz, CPz, and Pz were used from the midline. Oz was excluded due to equipment problems across all participants. Using MATLAB, the N400 area under the curve was calculated for each electrode site, stimulus, and task (averaging over trials) 300-500 msec after stimuli presentation. A constant score was subtracted from all EEG points to ensure all curves were below zero for area under the curve calculations.  
 
 ```{r create-area-peak, include = FALSE}
 finaldata = read.csv("final_eeg.csv")
@@ -242,11 +246,17 @@ abline(v = 0)}
 
 ```
 
+###Data Screening
+
 @VanSelst1994 describe that outlier elimination procedures can be affected by factors such as sample size or data skewness. They, as well as @Miller1991, describe procedures for adaptive outlier criteria based on sample size to correct for this any bias due to sample size. We utilized a non-recursive procedure with a moving criterion for outlier elimination. For example, traditional outlier identification may be based on a *z*-score criteria of two or more standard deviations away from the mean score. In the @VanSelst1994, this cut-off *z*-score is adjusted by sample size, and therefore, we used the average of their recommendations for 15 to 20 participants, $z_{critical}$ = 2.36. The non-recursive procedure involves only examing the data once for outliers, rather than continuing to screen for outliers iteratively until no outliers remained. Across 18 participants by five sites, three outlying data points were identified and subsequently removed from further analysis. Data were also screened for parametric assumptions of linearity, normality, homogeneity, and homoscedasticity. The data were slightly negatively skewed, but with the large quantity of data for each participant as well as the choice of analysis, test statistics should be robust to this slight skew.
+
+###Data Analytic Plan
 
 To analyze this data, we used multilevel models (MLM) to control for correlated error due to repeated measures of sites and stimulus type for each participant [@Gelman2006]. These models were calculated using the *nlme* package in *R* [@Pinheiro2017]. First, a model with only the intercept was compared to a model with participants as a random intercept factor. Random intercepts allow each participant to have different average scores for areas under the curve or peak latency (see below). If the random intercept model was better than the intercept only model, then all forthcoming models would include participants as a random intercept factor. Models were compared only to the previous step and were deamed "significant" if the likelihood ratio difference score, $\Delta\chi^2$ was greater than to be expected given the change in degrees of freedom between models. Therefore, the *p*-values for each $\Delta\chi^2$ were calculated based on $\Delta df$, and $\alpha$ was set to .05. The two tasks, lexical desicion and letter search, were analyzed in separate models with the area under the curve as the dependent variable. The independent variables included the dummy coded site location as a control variable, followed by stimulus type coded as a dummy variable. In this analysis, we wished to compare each stimulus type to every other stimulus type, and therefore, we set $\alpha$ for these six comparisons to .05/6 = .008. The stimuli variable was recoded to examine all pairwise comparisons. 
 
-Table \@ref(tab:area-table-model) includes the model statistics for the lexical decision and letter search tasks. Participants were included as a random intercept factor, as this model was significantly better than an intercept only model, *p* < .001. The addition of the predictors of site and type of stimulus were also significant for both models, *p* < .001 and *p* = .003. Table \@ref(tab:area-table-est) includes the estimates for each pairwise comparison for word stimulus type. For the lexical decision task, we found that nonwords and unrelated had significantly larger areas under the curve than related word pairs. Nonwords and unrelated pairs were not different using our corrected $\alpha$ value. This find replicated previous work that the N400 was larger for unexpected words, while related word pairs showed attenuation. Semantic and associative stimuli did not show differences in their area under the curve. Figure \@ref(fig:graph-LDT) displays the ERP waveforms, separated by site, for the lexical decision task. For the letter search task, a similar pattern emerges for nonwords, in that they showed larger areas under the curve than all other stimuli. However, we did not find attenuation for related words, as unrelated, semantic, and associative words showed the same area under the curve in this task. Figure \@ref(fig:graph-LST) portrays the letter search task. The two gray lines represent unrelated and nonwords, which have larger areas under the curve than the two black lines, which represent semantic and associative word pairs. 
+###Area Under the Curve Results 
+
+Table \@ref(tab:area-table-model) includes the model statistics for the lexical decision and letter search tasks examining area under the curve. Participants were included as a random intercept factor, as this model was significantly better than an intercept only model, *p* < .001. The addition of the predictors of site and type of stimulus were also significant for both models, *p* < .001 and *p* = .003. Table \@ref(tab:area-table-est) includes the estimates for each pairwise comparison for word stimulus type. For the lexical decision task, we found that nonwords and unrelated had significantly larger areas under the curve than related word pairs. Nonwords and unrelated pairs were not different using our corrected $\alpha$ value. This find replicated previous work that the N400 was larger for unexpected words, while related word pairs showed attenuation. Semantic and associative stimuli did not show differences in their area under the curve. Figure \@ref(fig:graph-LDT) displays the ERP waveforms, separated by site, for the lexical decision task. For the letter search task, a similar pattern emerges for nonwords, in that they showed larger areas under the curve than all other stimuli. However, we did not find attenuation for related words, as unrelated, semantic, and associative words showed the same area under the curve in this task. Figure \@ref(fig:graph-LST) portrays the letter search task. The two gray lines represent unrelated and nonwords, which have larger areas under the curve than the two black lines, which represent semantic and associative word pairs. 
 
 ```{r area-LDT, include = FALSE}
 ##split on task
@@ -288,7 +298,7 @@ LDTmodel3.2 = lme(curve ~ site + type3,
 
 ```
 
-```{r graph-LDT, echo=FALSE, fig.cap = "SOMETHING SOMETHING HERE", fig.height=8, fig.width=8}
+```{r graph-LDT, echo=FALSE, fig.cap = "EEG Waveforms for five midline sites for the four experimental stimuli in the lexical decision task.", fig.height=8, fig.width=8}
 
 #overall data
 #need to average down by participant
@@ -359,8 +369,12 @@ pz_ldt_g = ggplot(data=pz_ldt, aes(x=variable, y = value, group = Stimuli)) +
   cleanup
 temp = ggplot(data=pz_ldt, aes(x=variable, y = value, group = Stimuli)) + 
   geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
-  scale_linetype_manual(values=c("solid","22","22","solid")) +
-  scale_color_manual(values=c('black','gray48','black','gray60')) 
+  scale_linetype_manual(values=c("solid","22","22","solid"),
+                        labels = c("Associative", "Nonword", "Semantic", "Unrelated"),
+                        name = "Stimuli Type") +
+  scale_color_manual(values=c('black','gray48','black','gray60'),
+                     labels = c("Associative", "Nonword", "Semantic", "Unrelated"),
+                     name = "Stimuli Type") 
 mylegend <- get_legend(temp)
 ldt_grid = plot_grid(cpz_ldt_g,cz_ldt_g,fcz_ldt_g,
         fz_ldt_g,pz_ldt_g,ncol=2)
@@ -408,7 +422,7 @@ LSTmodel3.2 = lme(curve ~ site + type3,
                 random = ~1|partno)
 ```
 
-```{r graph-LST, echo=FALSE,  fig.cap = "SOMETHING SOMETHING HERE", fig.height=8, fig.width=8}
+```{r graph-LST, echo=FALSE,  fig.cap = "EEG Waveforms for the letter search task across the five midline sites for each type of stimuli.", fig.height=8, fig.width=8}
 #lst graphs
 cpz_lst_g = ggplot(data=cpz_lst, aes(x=variable, y = value, group = Stimuli)) + 
   geom_line(aes(color=Stimuli,linetype=Stimuli), size=1) +
@@ -520,7 +534,11 @@ means_correct = tapply(task$correct, list(task$task), mean)
 sds_correct = tapply(task$correct, list(task$task), sd)
 ```
 
+###Data Screening
+
 One persons data was corrupt for the complete task component, and one participant's task excluded several of their responses. The missing responses were excluded for this analysis (*n* = 16 complete with 360 responses, *n* = 1 with 329 responses). Task data were scored for correctness in the two tasks, and overall performance was around 94% for each task: LDT, *M* = `r printnum(means_correct[1]*100)` (*SD* = `r printnum(sds_correct[1]*100)`) and LST, *M* = `r printnum(means_correct[1]*100)` (*SD* = `r printnum(sds_correct[1]*100)`). Incorrect trials (*n* = 335) were discarded for the response latency analysis. An analysis of outliers indicated there were 214 trials with long response latencies, and they were excluded from the analysis.
+
+###Response Latency Results
 
 Two MLM analyses were conducted on each task separately, with stimuli as the independent variable and response latency as the dependent variable, controlling for participants as a random factor (see Table \@ref(tab:RT-table-model)). In both the lexical decision and letter search tasks, there were significant improvements in the model by including stimuli as a predictor over the random intercept model, *p*s < .001. Each stimuli type was compared pairwise, and $\alpha$ was again set at .008 to control the Type I error rate. Table \@ref(tab:RT-table-est) includes these comparisons from the dummy coded models, and means with 95% confidence intervals are displayed in Figure \@ref(fig:RT-graph). For the lexical decision task, nonwords were slower than all other stimuli types. Unrelated words were not different from semantic word pairs, but were slower than associative word pairs. This finding indicated that the lexical decision task showed associative priming, but not semantic priming; however, there were not response latency differences for these two related word pair types. In contrast to this finding, and results from the N400 area under the curve, we found priming for both semantic and associative word pairs in the letter search task. Nonwords were again slower than all other stimuli types, followed by unrelated word pairs. Again, semantic and associative pairs were not different. These analyses were examined with the outliers included in the analysis, as we considered that eliminating 214 trials may have skewed the results. The pattern of results did not change, but the differences between unrelated pairs and other stimuli types do become larger. 
 
@@ -678,9 +696,12 @@ apa_table(tableprint,
 
 ```
 
-```{r RT-graph, echo=FALSE, fig.cap = "SOMETHING SOMETHING HERE", fig.height=6, fig.width=6}
+```{r RT-graph, echo=FALSE, fig.cap = "Response latency data for the lexical decision and letter search tasks for each stimuli type.", fig.height=6, fig.width=6}
 
-rtplot = ggplot(noout, aes(task, RT, fill = type)) + 
+noout$type2 = factor(noout$type, 
+                     levels = c("Associative", "Nonword", "Semantic", "Unrelated"))
+
+rtplot = ggplot(noout, aes(task, RT, fill = type2)) + 
   stat_summary(fun.y = mean,
                geom = "bar",
                position = "dodge") +

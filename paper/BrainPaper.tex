@@ -177,16 +177,16 @@ search \\
 
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
 \theoremstyle{definition}
-\newtheorem{example}{Example}
+\newtheorem{example}{Example}[section]
 \theoremstyle{definition}
-\newtheorem{exercise}{Exercise}
+\newtheorem{exercise}{Exercise}[section]
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
@@ -268,7 +268,7 @@ unrelated words in the masked prime condition. Brown and Hagoort (1993)
 concluded that this finding indicated that semantic activation was a
 controlled process, because attenuation only occurred when words were
 known. Thus, an \enquote{integrating} process transpires with semantic
-information from of multi-word characteristic representations (Hagoort,
+information from multi-word characteristic representations (Hagoort,
 Baggio, \& Willems, 2009; Kutas \& Federmeier, 2011). This condition
 supposedly rules out automatic processes, because the masked prime
 condition only allowed automatic processes to take place. Masked priming
@@ -412,22 +412,35 @@ participant's EEG data was corrupted and could not be used, and another
 participant was excluded for poor task performance (below chance),
 leaving eighteen participants (twelve women and six men).
 
-\subsection{Apparatus}\label{apparatus}
+\subsection{EEG Acquisition}\label{eeg-acquisition}
 
-The system used was a 32 Channel EEG Cap connected to a NuAmps monopolar
-digital amplifier, which was connected to a computer running SCAN 4.5
-software to record the data. The SCAN software was capable of managing
-continuous digital data captured by the NuAmps amplifier. STIM2 was used
-to coordinate the timing issues associated with Windows operating system
-and collecting EEG data on a separate computer. STIM2 also served as the
-software base for programming and operating experiments of this nature.
-The sensors in the EEG cap were sponges injected with 130 ml of
-electrically conductive solution (non-toxic and non-irritating). Also,
-to protect the participants and equipment, a surge protector was used at
-all times during data acquisition. The sensors recorded electrical
-activity just below the scalp, displaying brain activation. This data
-was amplified by the NuAmps hardware, and processed and recorded by the
-SCAN software.
+The system used was a 32 Channel EEG Quik-Cap
+(\url{https://compumedicsneuroscan.com/product/32-channels-quik-cap/})
+connected to a NuAmps monopolar digital amplifier
+(\url{https://compumedicsneuroscan.com/product/nuamps-40-channel-eeg-erp-amplifier/}),
+which was connected to a computer running SCAN 4.5 software to record
+the data. The Quik-Cap includes Ag/AgCl sintered ring electrodes and the
+layout follows the International 10/20 system with the following sites:
+F7, FT7, T7, TP7, P7, FP1, F3, FC3, C3, CP3, P3, O1, Fz, FCz, Cz, CPz,
+Pz, Oz, FP2, F4, FC4, C4, CP4, P4, O2, F8, FT8, T8, TP8, and P8. The
+ground electrode was embedded in the cab at FPz, and two elecctrodes
+were attached to the mastoid bones.
+
+The SCAN software was capable of managing continuous digital data
+captured by the NuAmps amplifier. STIM2 was used to coordinate the
+timing issues associated with Windows operating system and collecting
+EEG data on a separate computer
+(\url{https://compumedicsneuroscan.com/product/stim2-precise-stimulus-presentation/}).
+STIM2 also served as the software base for programming and operating
+experiments of this nature. The sensors in the EEG cap were sponges
+injected with 130 ml of electrically conductive solution (non-toxic and
+non-irritating). Also, to protect the participants and equipment, a
+surge protector was used at all times during data acquisition. The
+sensors recorded electrical activity just below the scalp, displaying
+brain activation. This data was amplified by the NuAmps hardware, and
+processed and recorded continuously by the SCAN software. At the start
+of th experiment, adjustments were made until impedance values were
+below 5 k\(\Omega\). Data processing is described below.
 
 \subsection{Materials}\label{materials}
 
@@ -466,12 +479,12 @@ was kept low for the semantic pairs, LDT, \emph{M} = .02 (\emph{SD} =
 
 The unrelated words were chosen so that they had no similarities (were
 unpaired in the databases), such as \emph{blender} and \emph{compass.}
-For Nonword pairs, the target word had one letter changed so that it no
+For nonword pairs, the target word had one letter changed so that it no
 longer represented a real word, yet the structure was left intact to
 require that the participant process the word cognitively. Essentially,
-Nonwords were orthographically similar to its real word counterpart,
+nonwords were orthographically similar to its real word counterpart,
 except for the change in a single letter. For example, the word
-\emph{pond} can be changed to \emph{pund} to produce a Nonword target.
+\emph{pond} can be changed to \emph{pund} to produce a nonword target.
 All materials and their database values can be found at our Open Science
 Foundation page: \url{https://osf.io/h5sd6/}, along with the markdown
 template used to create this paper (Aust \& Barth, 2017).
@@ -490,7 +503,7 @@ used a choice task procedure, where the color of the target word
 indicated the target task. One color denoted lexical decision with
 another color denoting letter search. The lexical decision task involved
 participants observing a word onscreen and deciding whether or not it
-was a word or Nonword (such as \emph{tortoise} and \emph{werm}).
+was a word or nonword (such as \emph{tortoise} and \emph{werm}).
 Nonrelated word pairs were created by taking prime and target words from
 related pairs and randomly rearranging them to eliminate relationships
 between primes and targets. The letter search task involved participants
@@ -524,23 +537,29 @@ asynchrony (SOA) because participant responses were self-paced.
 
 \subsection{N400 Waveform Analysis}\label{n400-waveform-analysis}
 
-The data were cleared of artifact data using EEGLAB, an open source
-MATLAB tool for processing electrophysiological data. The program
-automatically scanned for and removed artifacts caused by eye-blinking.
-Next, the datasets were visually inspected and any remaining corrupted
-sections were removed manually. Ninety percent of the data was retained
-across all trials and stimulus types after muscular artifact data were
-removed. However, a loss rate of 20-30 percent is not uncommon,
-especially with older EEG systems. The data were combined by task and
-stimulus type exclusively for the second word in each pair. Five sites
-were chosen to examine priming for nonwords, associative and semantic
-word pairs based on a survey of the literature. Fz, FCz, Cz, CPz, and Pz
-were used from the midline. Oz was excluded due to equipment problems
-across all participants. Using MATLAB, the N400 area under the curve was
-calculated for each electrode site, stimulus, and task (averaging over
-trials) 300-500 msec after stimuli presentation. A constant score was
-subtracted from all EEG points to ensure all curves were below zero for
-area under the curve calculations.
+\subsubsection{EEG Preparation}\label{eeg-preparation}
+
+The data were cleared of artifact data using EEGLAB
+(\url{http://sccn.ucsd.edu/eeglab/}; Delorme \& Makeig, 2004), an open
+source MATLAB tool for processing electrophysiological data. The program
+automatically scanned for and removed artifacts caused by eye-blinking
+using independent component analysis. Next, the datasets were visually
+inspected and any remaining corrupted sections were removed manually.
+Ninety percent of the data was retained across all trials and stimulus
+types after muscular artifact data were removed. However, a loss rate of
+20-30 percent is not uncommon, especially with older EEG systems. The
+data were combined by task and stimulus type exclusively for the second
+word in each pair. Five sites were chosen to examine priming for
+nonwords, associative and semantic word pairs based on a survey of the
+literature. Fz, FCz, Cz, CPz, and Pz were used from the midline. Oz was
+excluded due to equipment problems across all participants. Using
+MATLAB, the N400 area under the curve was calculated for each electrode
+site, stimulus, and task (averaging over trials) 300-500 msec after
+stimuli presentation. A constant score was subtracted from all EEG
+points to ensure all curves were below zero for area under the curve
+calculations.
+
+\subsubsection{Data Screening}\label{data-screening}
 
 Van Selst and Jolicoeur (1994) describe that outlier elimination
 procedures can be affected by factors such as sample size or data
@@ -561,6 +580,8 @@ for parametric assumptions of linearity, normality, homogeneity, and
 homoscedasticity. The data were slightly negatively skewed, but with the
 large quantity of data for each participant as well as the choice of
 analysis, test statistics should be robust to this slight skew.
+
+\subsubsection{Data Analytic Plan}\label{data-analytic-plan}
 
 To analyze this data, we used multilevel models (MLM) to control for
 correlated error due to repeated measures of sites and stimulus type for
@@ -586,40 +607,46 @@ and therefore, we set \(\alpha\) for these six comparisons to .05/6 =
 .008. The stimuli variable was recoded to examine all pairwise
 comparisons.
 
+\subsubsection{Area Under the Curve
+Results}\label{area-under-the-curve-results}
+
 Table \ref{tab:area-table-model} includes the model statistics for the
-lexical decision and letter search tasks. Participants were included as
-a random intercept factor, as this model was significantly better than
-an intercept only model, \emph{p} \textless{} .001. The addition of the
-predictors of site and type of stimulus were also significant for both
-models, \emph{p} \textless{} .001 and \emph{p} = .003. Table
-\ref{tab:area-table-est} includes the estimates for each pairwise
-comparison for word stimulus type. For the lexical decision task, we
-found that nonwords and unrelated had significantly larger areas under
-the curve than related word pairs. Nonwords and unrelated pairs were not
-different using our corrected \(\alpha\) value. This find replicated
-previous work that the N400 was larger for unexpected words, while
-related word pairs showed attenuation. Semantic and associative stimuli
-did not show differences in their area under the curve. Figure
-\ref{fig:graph-LDT} displays the ERP waveforms, separated by site, for
-the lexical decision task. For the letter search task, a similar pattern
-emerges for nonwords, in that they showed larger areas under the curve
-than all other stimuli. However, we did not find attenuation for related
-words, as unrelated, semantic, and associative words showed the same
-area under the curve in this task. Figure \ref{fig:graph-LST} portrays
-the letter search task. The two gray lines represent unrelated and
-nonwords, which have larger areas under the curve than the two black
-lines, which represent semantic and associative word pairs.
+lexical decision and letter search tasks examining area under the curve.
+Participants were included as a random intercept factor, as this model
+was significantly better than an intercept only model, \emph{p}
+\textless{} .001. The addition of the predictors of site and type of
+stimulus were also significant for both models, \emph{p} \textless{}
+.001 and \emph{p} = .003. Table \ref{tab:area-table-est} includes the
+estimates for each pairwise comparison for word stimulus type. For the
+lexical decision task, we found that nonwords and unrelated had
+significantly larger areas under the curve than related word pairs.
+Nonwords and unrelated pairs were not different using our corrected
+\(\alpha\) value. This find replicated previous work that the N400 was
+larger for unexpected words, while related word pairs showed
+attenuation. Semantic and associative stimuli did not show differences
+in their area under the curve. Figure \ref{fig:graph-LDT} displays the
+ERP waveforms, separated by site, for the lexical decision task. For the
+letter search task, a similar pattern emerges for nonwords, in that they
+showed larger areas under the curve than all other stimuli. However, we
+did not find attenuation for related words, as unrelated, semantic, and
+associative words showed the same area under the curve in this task.
+Figure \ref{fig:graph-LST} portrays the letter search task. The two gray
+lines represent unrelated and nonwords, which have larger areas under
+the curve than the two black lines, which represent semantic and
+associative word pairs.
 
 \begin{figure}
 \centering
 \includegraphics{BrainPaper_files/figure-latex/graph-LDT-1.pdf}
-\caption{\label{fig:graph-LDT}SOMETHING SOMETHING HERE}
+\caption{\label{fig:graph-LDT}EEG Waveforms for five midline sites for the
+four experimental stimuli in the lexical decision task.}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{BrainPaper_files/figure-latex/graph-LST-1.pdf}
-\caption{\label{fig:graph-LST}SOMETHING SOMETHING HERE}
+\caption{\label{fig:graph-LST}EEG Waveforms for the letter search task
+across the five midline sites for each type of stimuli.}
 \end{figure}
 
 \begin{table}[tbp]
@@ -686,6 +713,8 @@ LST & Semantic - Associative & -47.43 & 66.41 & -0.71 & .476\\
 
 \subsection{Task Performance}\label{task-performance}
 
+\subsubsection{Data Screening}\label{data-screening-1}
+
 One persons data was corrupt for the complete task component, and one
 participant's task excluded several of their responses. The missing
 responses were excluded for this analysis (\emph{n} = 16 complete with
@@ -696,6 +725,8 @@ for correctness in the two tasks, and overall performance was around
 were discarded for the response latency analysis. An analysis of
 outliers indicated there were 214 trials with long response latencies,
 and they were excluded from the analysis.
+
+\subsubsection{Response Latency Results}\label{response-latency-results}
 
 Two MLM analyses were conducted on each task separately, with stimuli as
 the independent variable and response latency as the dependent variable,
@@ -780,7 +811,8 @@ LST & Semantic - Associative & 79.31 & 45.28 & 1.75 & .080\\
 \begin{figure}
 \centering
 \includegraphics{BrainPaper_files/figure-latex/RT-graph-1.pdf}
-\caption{\label{fig:RT-graph}SOMETHING SOMETHING HERE}
+\caption{\label{fig:RT-graph}Response latency data for the lexical decision
+and letter search tasks for each stimuli type.}
 \end{figure}
 
 \section{Discussion}\label{discussion}
@@ -922,6 +954,12 @@ potential indices of semantic priming using masked and unmasked words:
 evidence that the N400 does not reflect a post-lexical process.
 \emph{Cognitive Brain Research}, \emph{9}(2), 137--146.
 doi:\href{https://doi.org/10.1016/S0926-6410(99)00050-6}{10.1016/S0926-6410(99)00050-6}
+
+\hypertarget{ref-Delorme2004}{}
+Delorme, A., \& Makeig, S. (2004). EEGLAB: an open source toolbox for
+analysis of single-trial EEG dynamics including independent component
+analysis. \emph{Journal of Neuroscience Methods}, \emph{134}(1), 9--21.
+doi:\href{https://doi.org/10.1016/J.JNEUMETH.2003.10.009}{10.1016/J.JNEUMETH.2003.10.009}
 
 \hypertarget{ref-Federmeier2009}{}
 Federmeier, K. D., \& Laszlo, S. (2009). Time for meaning:

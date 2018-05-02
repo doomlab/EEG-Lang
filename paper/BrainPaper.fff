@@ -3,7 +3,8 @@
 
 \centering
 \includegraphics{BrainPaper_files/figure-latex/graph-LDT-1.pdf}
-\caption{\label{fig:graph-LDT}SOMETHING SOMETHING HERE}
+\caption{\label{fig:graph-LDT}EEG Waveforms for five midline sites for the
+four experimental stimuli in the lexical decision task.}
 \end{figure*}
 \efloatseparator
  
@@ -12,7 +13,8 @@
 
 \centering
 \includegraphics{BrainPaper_files/figure-latex/graph-LST-1.pdf}
-\caption{\label{fig:graph-LST}SOMETHING SOMETHING HERE}
+\caption{\label{fig:graph-LST}EEG Waveforms for the letter search task
+across the five midline sites for each type of stimuli.}
 \end{figure*}
 \efloatseparator
  
@@ -21,7 +23,8 @@
 
 \centering
 \includegraphics{BrainPaper_files/figure-latex/RT-graph-1.pdf}
-\caption{\label{fig:RT-graph}SOMETHING SOMETHING HERE}
+\caption{\label{fig:RT-graph}Response latency data for the lexical decision
+and letter search tasks for each stimuli type.}
 \end{figure*}
 \efloatseparator
  
