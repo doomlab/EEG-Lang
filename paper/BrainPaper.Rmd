@@ -37,9 +37,8 @@ tablelist         : no
 footnotelist      : no
 lineno            : yes
 
-lang              : "english"
 class             : "man"
-output            : papaja::apa6_pdf
+output            : papaja::apa6_docx
 replace_ampersands: yes
 csl               : apa6.csl
 ---
@@ -487,10 +486,11 @@ tableprint[ , 3:6] = printnum(as.numeric(tableprint[ , 3:6]),
 tableprint[ , 7] = printnum(as.numeric(tableprint[ , 7]), 
                               gt1 = FALSE, zero = FALSE, digits = 3)
 
-apa_table.latex(as.data.frame(tableprint), 
+apa_table(as.data.frame(tableprint), 
           align = c("l", rep("c", 6)), 
           caption = "Area under curve model statistics",
-          note = "AIC: Aikaike Information Criterion, BIC: Bayesian Information Criterion", 
+          note = "AIC: Aikaike Information Criterion, BIC: Bayesian Information Criterion",
+          format = "latex",
           escape = FALSE,
           col.names = c("Model", "$df$", "AIC", "BIC", "$\\chi^2$", "$\\Delta\\chi^2$", "$p$"))
 ```
@@ -659,10 +659,11 @@ tableprint[ , 3:6] = printnum(as.numeric(tableprint[ , 3:6]),
 tableprint[ , 7] = printnum(as.numeric(tableprint[ , 7]), 
                               gt1 = FALSE, zero = FALSE, digits = 3)
 
-apa_table.latex(as.data.frame(tableprint), 
+apa_table(as.data.frame(tableprint), 
           align = c("l", rep("c", 6)), 
           caption = "Response latency model statistics",
-          note = "AIC: Aikaike Information Criterion, BIC: Bayesian Information Criterion", 
+          note = "AIC: Aikaike Information Criterion, BIC: Bayesian Information Criterion",
+          format = "latex",
           escape = FALSE,
           col.names = c("Model", "$df$", "AIC", "BIC", "$\\chi^2$", "$\\Delta\\chi^2$", "$p$"))
 ```
