@@ -6,23 +6,26 @@ author:
   - name          : "Erin M. Buchanan"
     affiliation   : "1"
     corresponding : yes 
-    address       : "901 S National, Springfield, MO, 65897"
-    email         : "erinbuchanan@missouristate.edu"
+    address       : "325 Market Street, Harrisburg, PA, 17101"
+    email         : "ebuchanan@harrisburgu.edu"
   - name          : "John E. Scofield"
     affiliation   : "2"
   - name          : "Nathan R. Nunley"
     affiliation   : "3"
+  - name          : "Addie Wikowsky"
+    affiliation   : "4"
 
 affiliation:
   - id            : "1"
-    institution   : "Missouri State University"
+    institution   : "Harrisburg University of Science and Technology"
   - id            : "2"
     institution   : "University of Missouri"
   - id            : "3"
     institution   : "University of Mississippi"
+  - id            : "4"
 
-author_note: >
-  Erin M. Buchanan, Department of Psychology, Missouri State University; John E. Scofield, Department of Psychology, University of Missouri, Columbia, MO, 65211; Nathan Nunley, University of Mississippi, P.O. Box 1848, University, MS, 28677.
+author_note: |
+  
 
 abstract: >
   The N400 waveform carries new insight into the nature of linguistic processing and may shed light into the automaticity of priming word relationships. We investigated semantic and associative word pairs in classic lexical decision and letter search tasks to examine their differences in cognitive processing. Normed database information was used to create orthogonal semantic and associative word relationships to clearly define N400 waveforms and priming for these pairs. Participants showed N400 reduction for related word pairs, both semantic and associative, in comparison to unrelated word pairs for the lexical decision task, indicating automatic access for both types of relatedness. For a letter search task, the N400 showed differences between nonwords and other stimuli but no attenuation for related pairs. Response latency data indicated associative priming in both tasks with semantic priming also found in the letter search task. These results help discern possible automatic and controlled processes occurring during these tasks, as the N400 may show automatic processing during the lexical decision task, while the response latency data may provide evidence for controlled processing during the letter search task. 
@@ -31,16 +34,17 @@ keywords          : "association, semantics, priming, N400, EEG, lexical decisio
 
 bibliography      : ["r-references.bib", "eeg refs.bib"]
 
-figsintext        : no
+floatsintext      : no
 figurelist        : no
 tablelist         : no
 footnotelist      : no
-lineno            : yes
+linenumbers       : no
+mask              : no
+draft             : no
 
-class             : "man"
-output            : papaja::apa6_docx
-replace_ampersands: yes
-csl               : apa6.csl
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
 ---
 
 ```{r libraries, include = FALSE}
